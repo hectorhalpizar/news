@@ -10,4 +10,7 @@ java {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation 'junit:junit:4.+'
+    testImplementation "io.mockk:mockk:$versions.mockk"
+    testImplementation "io.mockk:mockk-agent-jvm:$versions.mockk"
 }

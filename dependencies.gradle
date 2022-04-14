@@ -1,0 +1,5 @@
+ext {
+    versions = [
+        "mockk" : "1.12.3"
+    ]
+}
