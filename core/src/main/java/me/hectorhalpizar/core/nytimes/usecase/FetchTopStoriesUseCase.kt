@@ -24,7 +24,7 @@ class FetchTopStoriesUseCase(
                     }
                     .forEach { article ->
                         try {
-                            repository.storeTopStoryOnDevice(article)
+                            repository.storeTopStoryOnDevice(article, input)
                         } catch (e: Exception) {
                             return@let articles
                         }

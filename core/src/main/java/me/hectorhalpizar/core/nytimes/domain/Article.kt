@@ -2,13 +2,13 @@ package me.hectorhalpizar.core.nytimes.domain
 
 import java.util.*
 
-class Article(
+data class Article(
     val section: String,
     val subsection: String,
     val title: String,
     val abstract: String,
     val url: String,
-    val uri: String,
+    val uri: String = DEFAULT_URI_VALUE,
     val byline: String,
     val item_type: String,
     val updated_date: Date,
@@ -16,10 +16,11 @@ class Article(
     val published_date: Date,
     val material_type_facet: String,
     val kicker: String,
-    val des_facet: List<String>,
-    val org_facet: List<String>,
-    val per_facet: List<String>,
-    val geo_facet: List<String>,
-    val multimedia: List<Multimedia>,
     val short_url: String
-)
+) {
+    var multimedia: List<Multimedia>? = null
+
+    companion object {
+        private const val DEFAULT_URI_VALUE = ""
+    }
+}

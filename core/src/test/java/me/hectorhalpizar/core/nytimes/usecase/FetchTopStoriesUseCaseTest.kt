@@ -27,13 +27,13 @@ class FetchTopStoriesUseCaseTest {
             mockk(relaxed = true)
         )
 
-        every { repository.storeTopStoryOnDevice(any()) } returns Unit
+        every { repository.storeTopStoryOnDevice(any(), any()) } returns Unit
 
         // When
         val result = test(Section.ARTS)
 
         // Then
-        verify(exactly = 3) { repository.storeTopStoryOnDevice(any()) }
+        verify(exactly = 3) { repository.storeTopStoryOnDevice(any(), any()) }
         verify(exactly = 0) { repository.getStoredTopStories(any()) }
         assertEquals(3, result.size)
     }
@@ -48,7 +48,7 @@ class FetchTopStoriesUseCaseTest {
         test(Section.ARTS)
 
         // Then
-        verify(exactly = 0) { repository.storeTopStoryOnDevice(any()) }
+        verify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
         verify(exactly = 1) { repository.getStoredTopStories(any()) }
     }
 
@@ -62,13 +62,13 @@ class FetchTopStoriesUseCaseTest {
             mockk(relaxed = true)
         )
 
-        every { repository.storeTopStoryOnDevice(articleWithExceptionToBeThrown) } throws Exception("Unit Test Exception")
+        every { repository.storeTopStoryOnDevice(articleWithExceptionToBeThrown, any()) } throws Exception("Unit Test Exception")
 
         // When
         val result = test(Section.ARTS)
 
         // Then
-        verify(exactly = 2) { repository.storeTopStoryOnDevice(any()) }
+        verify(exactly = 2) { repository.storeTopStoryOnDevice(any(), any()) }
         verify(exactly = 0) { repository.getStoredTopStories(any()) }
         assertEquals(3, result.size)
     }
@@ -112,7 +112,7 @@ class FetchTopStoriesUseCaseTest {
         test(Section.ARTS)
 
         // Then
-        verify(exactly = 0) { repository.storeTopStoryOnDevice(any()) }
+        verify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
         verify(exactly = 1) { repository.getStoredTopStories(any()) }
     }
 }

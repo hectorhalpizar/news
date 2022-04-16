@@ -1,6 +1,6 @@
 package me.hectorhalpizar.core.nytimes.domain
 
-class Multimedia(
+data class Multimedia(
     val url: String,
     val format: String,
     val height: Int,
