@@ -27,7 +27,7 @@ class NetworkTopStoryDataSourceTest {
         }
 
         // When
-        val result = test.getFromDevice(section = Section.ARTS)
+        val result = test.get(section = Section.ARTS)
 
         // Then
         assertEquals(3, result.size)
@@ -45,7 +45,7 @@ class NetworkTopStoryDataSourceTest {
 
         // When
         val exception = assertThrows(Exception::class.java) {
-            test.getFromDevice(section = Section.ARTS)
+            test.get(section = Section.ARTS)
         }
 
         // Then
@@ -64,7 +64,7 @@ class NetworkTopStoryDataSourceTest {
 
         // When
         val exception = assertThrows(Exception::class.java) {
-            test.getFromDevice(section = Section.ARTS)
+            test.get(section = Section.ARTS)
         }
 
         // Then
@@ -83,7 +83,7 @@ class NetworkTopStoryDataSourceTest {
 
         // When
         val exception = assertThrows(Exception::class.java) {
-            test.getFromDevice(section = Section.ARTS)
+            test.get(section = Section.ARTS)
         }
 
         // Then

@@ -44,6 +44,6 @@ class RoomTopStoryDataSourceTest {
         }
 
         // Then
-        assertThat("The feed.json articles amount does not match the SQLite storing", feed.results.size == test.getFromDevice(Section.ARTS).size)
+        assertThat("The feed.json articles amount does not match the SQLite storing", feed.results.size == test.get(Section.ARTS).size)
     }
 }

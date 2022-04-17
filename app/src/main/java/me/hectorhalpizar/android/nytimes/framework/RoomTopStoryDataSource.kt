@@ -19,7 +19,7 @@ class RoomTopStoryDataSource internal constructor(database: NyTimesRoomDatabase)
         }
     }
 
-    override fun getFromDevice(section: Section): List<Article> =
+    override fun get(section: Section): List<Article> =
         articleDao.getTopStories(section.name)
             .let {
                 val result = arrayListOf<Article>()

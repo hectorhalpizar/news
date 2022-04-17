@@ -5,5 +5,5 @@ import me.hectorhalpizar.core.nytimes.domain.Section
 
 interface TopStoryDataSource {
     fun store(article: Article, section: Section)
-    fun getFromDevice(section: Section) : List<Article>
+    fun get(section: Section) : List<Article>
 }

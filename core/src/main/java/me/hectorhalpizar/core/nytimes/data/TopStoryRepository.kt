@@ -4,15 +4,19 @@ import me.hectorhalpizar.core.nytimes.domain.Article
 import me.hectorhalpizar.core.nytimes.domain.Section
 
 class TopStoryRepository(
-    private val dataSource: TopStoryDataSource
+    private val localDataSource: TopStoryDataSource,
+    private val remoteDataSource: TopStoryDataSource
 ) {
-    fun getRemoteTopStories(section: Section) : List<Article> {
-        TODO("Not Implemented")
-    }
+    fun getRemoteTopStories(section: Section) : List<Article> =
+        try {
+            remoteDataSource.get(section)
+        } catch (e: Exception) {
+            throw Error.Network(e)
+        }
 
-    fun storeTopStoryOnDevice(article: Article, section: Section) = dataSource.store(article, section)
+    fun storeTopStoryOnDevice(article: Article, section: Section) = localDataSource.store(article, section)
 
-    fun getStoredTopStories(section: Section) : List<Article> = dataSource.getFromDevice(section)
+    fun getStoredTopStories(section: Section) : List<Article> = localDataSource.get(section)
 
     sealed class Error(cause: Throwable?): Exception(cause) {
         class Network(cause: Throwable?): Error(cause)

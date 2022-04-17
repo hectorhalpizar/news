@@ -11,7 +11,7 @@ class NetworkTopStoryDataSource(private val restApi: NyTimesRestApi) : TopStoryD
         throw IllegalStateException("There is not a Network function to Store an Top Story article.")
     }
 
-    override fun getFromDevice(section: Section): List<Article> =
+    override fun get(section: Section): List<Article> =
         restApi.getTopStories(section.name.lowercase()).execute().let { response ->
             if (response.isSuccessful) {
                 response.body()?.results ?: run {
