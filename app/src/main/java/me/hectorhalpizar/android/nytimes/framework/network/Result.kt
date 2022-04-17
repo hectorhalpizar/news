@@ -1,5 +1,6 @@
-package me.hectorhalpizar.core.nytimes.domain
+package me.hectorhalpizar.android.nytimes.framework.network
 
+import me.hectorhalpizar.core.nytimes.domain.Article
 import java.util.*
 
 data class Result(

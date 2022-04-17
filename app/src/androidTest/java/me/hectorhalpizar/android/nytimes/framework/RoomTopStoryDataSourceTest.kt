@@ -1,13 +1,11 @@
 package me.hectorhalpizar.android.nytimes.framework
 
-import android.content.Context
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
 import me.hectorhalpizar.android.nytimes.framework.db.NyTimesRoomDatabase
-import me.hectorhalpizar.core.nytimes.domain.Result
+import me.hectorhalpizar.android.nytimes.framework.network.Result
 import me.hectorhalpizar.core.nytimes.domain.Section
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
