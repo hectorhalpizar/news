@@ -74,36 +74,6 @@ class FetchTopStoriesUseCaseTest {
     }
 
     @Test
-    fun `Server does not have articles available but there are articles stored in the device`() {
-        // Given
-        every { repository.getRemoteTopStories(any()) } throws IllegalStateException("Unit Test Exception")
-
-        // When
-        val exception = assertThrows(Exception::class.java) {
-            test(Section.ARTS)
-        }
-
-        // Then
-        assertTrue(exception is FetchTopStoriesUseCase.Error.Unknown)
-        assertTrue(exception.cause is IllegalStateException)
-    }
-
-    @Test
-    fun `Unknown error happened fetching server articles`() {
-        // Given
-        every { repository.getRemoteTopStories(any()) } throws IllegalStateException("Unit Test Exception")
-
-        // When
-        val exception = assertThrows(Exception::class.java) {
-            test(Section.ARTS)
-        }
-
-        // Then
-        assertTrue(exception is FetchTopStoriesUseCase.Error.Unknown)
-        assertTrue(exception.cause is IllegalStateException)
-    }
-
-    @Test
     fun `Network error happened fetching server articles`() {
         // Given
         every { repository.getRemoteTopStories(any()) } throws TopStoryRepository.Error.Network(null)
@@ -112,6 +82,24 @@ class FetchTopStoriesUseCaseTest {
         test(Section.ARTS)
 
         // Then
+        verify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
+        verify(exactly = 1) { repository.getStoredTopStories(any()) }
+    }
+
+    @Test
+    fun `Network and local error happened fetching articles`() {
+        // Given
+        every { repository.getRemoteTopStories(any()) } throws TopStoryRepository.Error.Network(null)
+        every { repository.getStoredTopStories(any()) } throws IllegalStateException("Unit Test Exception")
+
+
+        // When
+        val exception = assertThrows(Exception::class.java) {
+            test(Section.ARTS)
+        }
+
+        // Then
+        assertTrue(exception is FetchTopStoriesUseCase.Error.OnLocalRepository)
         verify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
         verify(exactly = 1) { repository.getStoredTopStories(any()) }
     }

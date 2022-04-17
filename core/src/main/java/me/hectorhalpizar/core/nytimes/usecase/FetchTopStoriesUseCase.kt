@@ -14,7 +14,6 @@ import me.hectorhalpizar.core.nytimes.domain.Section
 class FetchTopStoriesUseCase(
     private val repository: TopStoryRepository
 ) : BaseUseCase<Section, List<Article>> {
-    @Throws(Error.Unknown::class)
     override fun invoke(input: Section) : List<Article> =
         try {
             repository.getRemoteTopStories(input).let { articles ->
@@ -32,21 +31,17 @@ class FetchTopStoriesUseCase(
                 articles
             }
         } catch (e: Exception) {
-            when(e) {
-                is TopStoryRepository.Error.Network,
-                is Error.Handled.RemoteTopStoriesEmpty -> {
-                    repository.getStoredTopStories(input)
-                }
-                else -> {
-                    throw Error.Unknown(e)
-                }
+            try {
+                repository.getStoredTopStories(input)
+            } catch (storedException: Exception) {
+                throw Error.OnLocalRepository(storedException.cause)
             }
         }
 
-    sealed class Error(message: String?, cause: Throwable?): BaseUseCase.Error(message, cause)  {
-        internal sealed class Handled : Error(null, null) {
+    sealed class Error(cause: Throwable?): BaseUseCase.Error(null, cause)  {
+        internal sealed class Handled : Error(null) {
             internal class RemoteTopStoriesEmpty : Handled()
         }
-        class Unknown(cause: Throwable?) : Error(null, cause)
+        class OnLocalRepository(cause: Throwable?) : Error(cause)
     }
 }
