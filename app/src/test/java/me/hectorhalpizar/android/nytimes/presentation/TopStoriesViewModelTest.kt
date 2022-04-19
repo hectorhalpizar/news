@@ -6,6 +6,7 @@ import io.mockk.spyk
 import me.hectorhalpizar.core.nytimes.domain.Article
 import me.hectorhalpizar.core.nytimes.domain.Section
 import me.hectorhalpizar.core.nytimes.usecase.FetchTopStoriesUseCase
+import me.hectorhalpizar.core.nytimes.usecase.Interactor
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,9 +14,9 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class TopStoriesViewModelTest {
-
     private val fetchTopStories: FetchTopStoriesUseCase = mockk(relaxed = true)
-    private val testing: TopStoriesViewModel = spyk(TopStoriesViewModel(fetchTopStories))
+    private val interactor = Interactor(fetchTopStories)
+    private val testing: TopStoriesViewModel = TopStoriesViewModel(interactor)
 
     @Test
     fun `fetch feed`() {

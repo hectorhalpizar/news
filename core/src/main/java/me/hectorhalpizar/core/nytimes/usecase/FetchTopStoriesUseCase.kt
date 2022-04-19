@@ -34,7 +34,7 @@ class FetchTopStoriesUseCase(
             try {
                 repository.getStoredTopStories(input)
             } catch (storedException: Exception) {
-                throw Error.OnLocalRepository(storedException.cause)
+                throw Error.OnLocalRepository(storedException)
             }
         }
 
