@@ -11,7 +11,7 @@ object NyTimesViewModelFactory : ViewModelProvider.Factory {
         this.interactor = interactor
     }
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(NyTimesViewModel::class.java.isAssignableFrom(modelClass)) {
             return modelClass
                 .getConstructor(Interactor::class.java)

@@ -7,12 +7,12 @@ import me.hectorhalpizar.core.nytimes.domain.Section
 import java.io.InputStream
 
 class NetworkTopStoryDataSource(private val restApi: NyTimesRestApi) : TopStoryDataSource {
-    override fun store(article: Article, section: Section) {
+    override suspend fun store(article: Article, section: Section) {
         throw IllegalStateException("There is not a Network function to Store an Top Story article.")
     }
 
-    override fun get(section: Section): List<Article> =
-        restApi.getTopStories(section.name.lowercase()).execute().let { response ->
+    override suspend fun get(section: Section): List<Article> =
+        restApi.getTopStories(section.name.lowercase()).let { response ->
             if (response.isSuccessful) {
                 response.body()?.results ?: run {
                     throw Error.Payload.BodyNull()

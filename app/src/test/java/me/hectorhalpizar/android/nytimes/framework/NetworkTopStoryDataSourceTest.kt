@@ -1,7 +1,8 @@
 package me.hectorhalpizar.android.nytimes.framework
 
-import io.mockk.every
+import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import me.hectorhalpizar.android.nytimes.framework.network.NyTimesRestApi
 import me.hectorhalpizar.core.nytimes.domain.Article
 import me.hectorhalpizar.core.nytimes.domain.Section
@@ -14,94 +15,94 @@ import org.junit.runners.JUnit4
 class NetworkTopStoryDataSourceTest {
 
     private val restApi: NyTimesRestApi = mockk(relaxed = true)
-    private val test = NetworkTopStoryDataSource(restApi)
+    private val testing = NetworkTopStoryDataSource(restApi)
 
     @Test
-    fun `getFromDevice request succeed`() {
+    fun `getFromDevice request succeed`() = runBlocking {
         // Given
-        every {
-            restApi.getTopStories(any(), any()).execute()
+        coEvery {
+            restApi.getTopStories(any(), any())
         } returns mockk(relaxed = true) {
-            every { isSuccessful } returns true
-            every { body()?.results } returns listOf(mockk(relaxed = true), mockk(relaxed = true), mockk(relaxed = true))
+            coEvery { isSuccessful } returns true
+            coEvery { body()?.results } returns listOf(mockk(relaxed = true), mockk(relaxed = true), mockk(relaxed = true))
         }
 
         // When
-        val result = test.get(section = Section.ARTS)
+        val result = testing.get(section = Section.ARTS)
 
         // Then
         assertEquals(3, result.size)
     }
 
     @Test
-    fun `getFromDevice request succeed body null`() {
+    fun `getFromDevice request succeed body null`() : Unit = runBlocking {
         // Given
-        every {
-            restApi.getTopStories(any(), any()).execute()
+        coEvery {
+            restApi.getTopStories(any(), any())
         } returns mockk(relaxed = true) {
-            every { isSuccessful } returns true
-            every { body()?.results } returns null
+            coEvery { isSuccessful } returns true
+            coEvery { body()?.results } returns null
         }
 
-        // When
-        val exception = assertThrows(Exception::class.java) {
-            test.get(section = Section.ARTS)
+        try {
+            // When
+            testing.get(section = Section.ARTS)
+        } catch (e: Exception) {
+            // Then
+            assertTrue(e is NetworkTopStoryDataSource.Error.Payload.BodyNull)
         }
-
-        // Then
-        assertTrue(exception is NetworkTopStoryDataSource.Error.Payload.BodyNull)
     }
 
     @Test
-    fun `getFromDevice request failed`() {
+    fun `getFromDevice request failed`() : Unit = runBlocking {
         // Given
-        every {
-            restApi.getTopStories(any(), any()).execute()
+        coEvery {
+            restApi.getTopStories(any(), any())
         } returns mockk(relaxed = true) {
-            every { isSuccessful } returns false
-            every { errorBody() } returns mockk(relaxed = true)
+            coEvery { isSuccessful } returns false
+            coEvery { errorBody() } returns mockk(relaxed = true)
         }
 
-        // When
-        val exception = assertThrows(Exception::class.java) {
-            test.get(section = Section.ARTS)
+        try {
+            // When
+            testing.get(section = Section.ARTS)
+        } catch (e: Exception) {
+            // Then
+            assertTrue(e is NetworkTopStoryDataSource.Error.ErrorBody)
         }
-
-        // Then
-        assertTrue(exception is NetworkTopStoryDataSource.Error.ErrorBody)
     }
 
     @Test
-    fun `getFromDevice request failed error body null`() {
+    fun `getFromDevice request failed error body null`() : Unit = runBlocking {
         // Given
-        every {
-            restApi.getTopStories(any(), any()).execute()
+        coEvery {
+            restApi.getTopStories(any(), any())
         } returns mockk(relaxed = true) {
-            every { isSuccessful } returns false
-            every { errorBody() } returns null
+            coEvery { isSuccessful } returns false
+            coEvery { errorBody() } returns null
         }
 
-        // When
-        val exception = assertThrows(Exception::class.java) {
-            test.get(section = Section.ARTS)
+        try {
+            // When
+            testing.get(section = Section.ARTS)
+        } catch (e: Exception) {
+            // Then
+            assertTrue(e is NetworkTopStoryDataSource.Error.Payload.ErrorBodyNull)
         }
-
-        // Then
-        assertTrue(exception is NetworkTopStoryDataSource.Error.Payload.ErrorBodyNull)
     }
 
     @Test
-    fun `store throws IllegalStateException`() {
+    fun `store throws IllegalStateException`() : Unit = runBlocking {
         // Given
         val article: Article = mockk(relaxed = true)
 
         // When
-        val exception = assertThrows(Exception::class.java) {
-            test.store(article, Section.ARTS)
+        try {
+            testing.store(article, Section.ARTS)
+        } catch (e: Exception) {
+            // Then
+            assertTrue(e is IllegalStateException)
+            assertEquals("There is not a Network function to Store an Top Story article.", e.message)
         }
-
-        // Then
-        assertTrue(exception is IllegalStateException)
-        assertEquals("There is not a Network function to Store an Top Story article.", exception.message)
     }
 }

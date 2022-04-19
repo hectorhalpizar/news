@@ -1,7 +1,9 @@
 package me.hectorhalpizar.core.nytimes.usecase
 
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import me.hectorhalpizar.core.nytimes.data.TopStoryDataSource
 import me.hectorhalpizar.core.nytimes.data.TopStoryRepository
 import me.hectorhalpizar.core.nytimes.domain.Section
@@ -15,9 +17,9 @@ class TopStoryRepositoryTest {
     private val testing = TopStoryRepository(localDataSource, remoteDataSource)
 
     @Test
-    fun `getRemoteTopStories successfully`() {
+    fun `getRemoteTopStories successfully`() = runBlocking {
         // Given
-        every { remoteDataSource.get(any()) } returns listOf(mockk(relaxed = true))
+        coEvery { remoteDataSource.get(any()) } returns listOf(mockk(relaxed = true))
 
         // When
         val result = testing.getRemoteTopStories(Section.ARTS)
@@ -27,16 +29,16 @@ class TopStoryRepositoryTest {
     }
 
     @Test
-    fun `getRemoteTopStories failed`() {
+    fun `getRemoteTopStories failed`() : Unit = runBlocking {
         // Given
-        every { remoteDataSource.get(any()) } throws IllegalStateException("Unit Test Exception")
+        coEvery { remoteDataSource.get(any()) } throws IllegalStateException("Unit Test Exception")
 
-        // When
-        val exception = assertThrows(Exception::class.java) {
+        try {
+            // When
             testing.getRemoteTopStories(Section.ARTS)
+        } catch (e: Exception) {
+            // Then
+            assertTrue(e is TopStoryRepository.Error.Network)
         }
-
-        // Then
-        assertTrue(exception is TopStoryRepository.Error.Network)
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_top_stories.*
+import kotlinx.android.synthetic.main.fragment_top_stories.view.*
 import me.hectorhalpizar.android.nytimes.R
 import me.hectorhalpizar.android.nytimes.framework.NyTimesViewModelFactory
 import me.hectorhalpizar.core.nytimes.domain.Section
@@ -29,13 +30,15 @@ class TopStoriesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_top_stories, container, false).also {
+    ): View? = inflater.inflate(R.layout.fragment_top_stories, container, false).also { v ->
         activity?.let {
             val adapter = TopStoriesAdapter()
             viewModel = NyTimesViewModelFactory.create(TopStoriesViewModel::class.java).apply {
-                section?.let { fetch(Section.valueOf(it)) }
+                articles.observe(viewLifecycleOwner) {
+                    adapter.update(it.values.toList())
+                }
             }
-            top_stories_recycler_view.adapter = adapter
+            v.top_stories_recycler_view.adapter = adapter
         }
     }
 

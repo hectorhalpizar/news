@@ -6,7 +6,7 @@ import me.hectorhalpizar.android.nytimes.framework.NyTimesViewModelFactory
 import me.hectorhalpizar.android.nytimes.framework.RoomTopStoryDataSource
 import me.hectorhalpizar.android.nytimes.framework.network.NetworkService
 import me.hectorhalpizar.core.nytimes.data.TopStoryRepository
-import me.hectorhalpizar.core.nytimes.usecase.FetchTopStoriesUseCase
+import me.hectorhalpizar.core.nytimes.usecase.FetchTopStoriesFlowUseCase
 import me.hectorhalpizar.core.nytimes.usecase.Interactor
 
 class NyTimesApplication : Application() {
@@ -17,6 +17,6 @@ class NyTimesApplication : Application() {
         val remote = NetworkTopStoryDataSource(NetworkService.nyTimes)
         val repository = TopStoryRepository(local, remote)
 
-        NyTimesViewModelFactory.inject(Interactor(FetchTopStoriesUseCase(repository)))
+        NyTimesViewModelFactory.inject(Interactor(FetchTopStoriesFlowUseCase(repository)))
     }
 }

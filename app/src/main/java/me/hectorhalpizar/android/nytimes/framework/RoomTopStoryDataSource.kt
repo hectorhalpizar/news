@@ -13,13 +13,13 @@ class RoomTopStoryDataSource internal constructor(database: NyTimesRoomDatabase)
 
     private val articleDao: ArticleDao = database.articleDao()
 
-    override fun store(article: Article, section: Section) {
+    override suspend fun store(article: Article, section: Section) {
         article.let { a ->
             articleDao.addArticle(map(a, mainSection = section.name))
         }
     }
 
-    override fun get(section: Section): List<Article> =
+    override suspend fun get(section: Section): List<Article> =
         articleDao.getTopStories(section.name)
             .let {
                 val result = arrayListOf<Article>()

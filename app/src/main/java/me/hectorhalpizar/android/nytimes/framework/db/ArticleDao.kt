@@ -9,11 +9,11 @@ import me.hectorhalpizar.core.nytimes.domain.Article
 @Dao
 interface ArticleDao {
     @Insert(onConflict = REPLACE)
-    fun addArticle(article: ArticleEntity)
+    suspend fun addArticle(article: ArticleEntity)
 
     @Query("SELECT * FROM articles WHERE mainSection = :section")
-    fun getTopStories(section: String) : List<ArticleEntity>
+    suspend fun getTopStories(section: String) : List<ArticleEntity>
 
     @Query("SELECT * FROM articles")
-    fun getTopStories() : List<ArticleEntity>
+    suspend fun getTopStories() : List<ArticleEntity>
 }
