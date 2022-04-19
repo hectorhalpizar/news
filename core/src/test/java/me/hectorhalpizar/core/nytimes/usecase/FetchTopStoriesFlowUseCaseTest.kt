@@ -1,8 +1,9 @@
 package me.hectorhalpizar.core.nytimes.usecase
 
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import junit.framework.Assert.assertTrue
-import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.runBlocking
 import me.hectorhalpizar.core.nytimes.data.TopStoryRepository
 import me.hectorhalpizar.core.nytimes.domain.Article
@@ -26,7 +27,7 @@ class FetchTopStoriesFlowUseCaseTest  {
         coEvery { repository.storeTopStoryOnDevice(any(), any()) } returns Unit
 
         // When
-        val result = testing(Section.ARTS).single()
+        val result = testing(Section.ARTS)
 
         // Then
         coVerify(exactly = 3) { repository.storeTopStoryOnDevice(any(), any()) }
@@ -41,7 +42,7 @@ class FetchTopStoriesFlowUseCaseTest  {
         coEvery { repository.getStoredTopStories(any()).size } returns 3
 
         // When
-        testing(Section.ARTS).single()
+        testing(Section.ARTS)
 
         // Then
         coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
@@ -61,7 +62,7 @@ class FetchTopStoriesFlowUseCaseTest  {
         coEvery { repository.storeTopStoryOnDevice(articleWithExceptionToBeThrown, any()) } throws Exception("Unit Test Exception")
 
         // When
-        val result = testing(Section.ARTS).single()
+        val result = testing(Section.ARTS)
 
         // Then
         coVerify(exactly = 2) { repository.storeTopStoryOnDevice(any(), any()) }
@@ -75,7 +76,7 @@ class FetchTopStoriesFlowUseCaseTest  {
         coEvery { repository.getRemoteTopStories(any()) } throws TopStoryRepository.Error.Network(null)
 
         // When
-        testing(Section.ARTS).single()
+        testing(Section.ARTS)
 
         // Then
         coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
@@ -91,7 +92,7 @@ class FetchTopStoriesFlowUseCaseTest  {
 
         // When
         try {
-            testing(Section.ARTS).single()
+            testing(Section.ARTS)
         } catch (e: Exception) {
         // Then
             assertTrue(e is FetchTopStoriesFlowUseCase.Error.OnLocalRepository)

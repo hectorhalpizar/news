@@ -15,11 +15,13 @@ class TopStoriesViewModel(interactor: Interactor) : NyTimesViewModel(interactor)
     private val _articles: MutableLiveData<MutableMap<String, Article>> = MutableLiveData(mutableMapOf())
     val articles: LiveData<MutableMap<String, Article>> = _articles
 
-    fun fetch(section: Section) = viewModelScope.launch {
-        interactor.fetchTopStoriesFlowUseCase(section).single().let { feed ->
-            feed.forEach { article ->
-                articles.value?.set(article.uri, article)
-            }
+    fun fetch(section: Section) {
+        viewModelScope.launch {
+            interactor
+                .fetchTopStoriesFlowUseCase(section)
+                .forEach { article ->
+                    articles.value?.set(article.uri, article)
+                }
             _articles.postValue(articles.value)
         }
     }
