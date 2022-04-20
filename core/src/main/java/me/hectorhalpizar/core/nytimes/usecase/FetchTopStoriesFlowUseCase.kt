@@ -14,7 +14,7 @@ class FetchTopStoriesFlowUseCase(
                     .ifEmpty {
                         throw Error.Handled.RemoteTopStoriesEmpty()
                     }
-                    .forEach { article ->
+                    .forEach { article -> // O(n)
                         try {
                             repository.storeTopStoryOnDevice(article, input)
                         } catch (e: Exception) {
@@ -24,11 +24,10 @@ class FetchTopStoriesFlowUseCase(
                 articles
             }
         } catch (e: Exception) {
-            e.printStackTrace()
             try {
                 repository.getStoredTopStories(input)
             } catch (storedException: Exception) {
-                throw Error.OnLocalRepository(storedException)
+                throw Error.Caused(storedException)
             }
         }
 
@@ -38,6 +37,6 @@ class FetchTopStoriesFlowUseCase(
             internal class RemoteTopStoriesEmpty : Handled()
         }
 
-        class OnLocalRepository(cause: Throwable?) : Error(cause)
+        class Caused(cause: Throwable?) : Error(cause)
     }
 }

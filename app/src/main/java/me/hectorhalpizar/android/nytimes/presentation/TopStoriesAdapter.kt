@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_article.view.*
 import me.hectorhalpizar.android.nytimes.R
 import me.hectorhalpizar.core.nytimes.domain.Article
+import me.hectorhalpizar.core.nytimes.update
 
 class TopStoriesAdapter(
-    private val documents: MutableList<Article> = mutableListOf()
+    private val cachedTopStories: MutableList<Article> = mutableListOf()
 ) : RecyclerView.Adapter<TopStoriesAdapter.ViewHolder>() {
 
-    fun update(list: List<Article>) {
-        documents.clear()
-        documents.addAll(list)
+    fun update(newFeed: MutableList<Article>) {
+        cachedTopStories.update(newFeed)
         notifyDataSetChanged()
     }
 
@@ -32,9 +32,10 @@ class TopStoriesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = documents[position].title
-        holder.description.text = documents[position].abstract
+        val list = cachedTopStories.toList()
+        holder.title.text = list[position].title
+        holder.description.text = list[position].abstract
     }
 
-    override fun getItemCount(): Int = documents.size
+    override fun getItemCount(): Int = cachedTopStories.size
 }

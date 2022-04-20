@@ -1,14 +1,19 @@
 package me.hectorhalpizar.android.nytimes.presentation
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
+import me.hectorhalpizar.android.nytimes.MainCoroutineRule
+import me.hectorhalpizar.android.nytimes.getOrAwaitValue
 import me.hectorhalpizar.core.nytimes.domain.Article
 import me.hectorhalpizar.core.nytimes.domain.Section
 import me.hectorhalpizar.core.nytimes.usecase.FetchTopStoriesFlowUseCase
 import me.hectorhalpizar.core.nytimes.usecase.Interactor
-import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -20,26 +25,32 @@ class TopStoriesViewModelTest {
     private val interactor = Interactor(fetchTopStories)
     private val testing: TopStoriesViewModel = TopStoriesViewModel(interactor)
 
+    // Set the main coroutines dispatcher for unit testing.
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
+
+    // Executes each task synchronously using Architecture Components.
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
+
     @Test
-    fun `fetch feed`() = runBlocking {
-        coEvery { fetchTopStories(any()) } returns getNewFeed()
+    fun `fetch and feed`() = mainCoroutineRule.runBlockingTest {
+        coEvery { fetchTopStories.invoke(any()) } returns getNewFeed()
         testing.fetch(Section.ARTS)
-        val articles = testing.articles.value
-        assertEquals(21, articles?.size)
+        assertTrue(testing.fetchingState.getOrAwaitValue() is TopStoriesViewModel.RequestState.Successful)
     }
 
     @Test
-    fun `fetch and update feed`() = runBlocking {
-        coEvery { fetchTopStories.invoke(any()) } returns getNewFeed()
-        val articles = testing.articles.value
-        articles?.plusAssign(getFetchedArticles())
-        testing.fetch(Section.ARTS)
-        assertEquals(23, articles?.size)
-        assertEquals("Mocked Title", articles?.get("https://10")?.title)
-        assertEquals("Mocked Title", articles?.get("https://15")?.title)
-        assertEquals("Mocked Title", articles?.get("https://20")?.title)
-        assertEquals("Title A", articles?.get("https://a")?.title)
-        assertEquals("Title C", articles?.get("https://c")?.title)
+    fun `fetch with the use case error`() = mainCoroutineRule.runBlockingTest {
+        coEvery { fetchTopStories.invoke(any()) } throws FetchTopStoriesFlowUseCase.Error.Caused(IllegalArgumentException("Unit Test"))
+
+        try {
+            testing.fetch(Section.ARTS)
+        } catch(e: Exception) {
+            assertTrue(e is FetchTopStoriesFlowUseCase.Error.Caused)
+            assertTrue(testing.fetchingState.getOrAwaitValue() is TopStoriesViewModel.RequestState.Failed)
+        }
     }
 
     private fun getNewFeed() : List<Article> =
@@ -51,27 +62,4 @@ class TopStoriesViewModelTest {
                 })
             }
         }.toList()
-
-    private fun getFetchedArticles(): Map<String, Article> = mapOf(
-            "https://10" to mockk(relaxed = true) {
-                every { uri } returns "https://10"
-                every { title } returns "Modified Title"
-            },
-            "https://a" to mockk(relaxed = true) {
-                every { uri } returns "https://a"
-                every { title } returns "Title A"
-            },
-            "https://15" to mockk(relaxed = true) {
-                every { uri } returns "https://15"
-                every { title } returns "Modified Title 2"
-            },
-            "https://c" to mockk(relaxed = true) {
-                every { uri } returns "https://c"
-                every { title } returns "Title C"
-            },
-            "https://20" to mockk(relaxed = true) {
-                every { uri } returns "https://20"
-                every { title } returns "Modified Title 3"
-            },
-        )
 }

@@ -1,15 +1,17 @@
 package me.hectorhalpizar.android.nytimes.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_top_stories.*
 import kotlinx.android.synthetic.main.fragment_top_stories.view.*
 import me.hectorhalpizar.android.nytimes.R
 import me.hectorhalpizar.android.nytimes.framework.NyTimesViewModelFactory
 import me.hectorhalpizar.core.nytimes.domain.Section
+
+private const val TAG = "TopStoriesFragment"
 
 class TopStoriesFragment : Fragment() {
     private var section: String? = null
@@ -19,7 +21,7 @@ class TopStoriesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             section = it.getString(SECTION_EXTRA)
-        } ?: throw IllegalArgumentException("Section must be passed into the fragment")
+        } ?: throw IllegalArgumentException("A valid section must be provided")
     }
 
     override fun onStart() {
@@ -34,8 +36,18 @@ class TopStoriesFragment : Fragment() {
         activity?.let {
             val adapter = TopStoriesAdapter()
             viewModel = NyTimesViewModelFactory.create(TopStoriesViewModel::class.java).apply {
-                articles.observe(viewLifecycleOwner) {
-                    adapter.update(it.values.toList())
+                fetchingState.observe(viewLifecycleOwner) { state ->
+                    when(state) {
+                        is TopStoriesViewModel.RequestState.Successful -> {
+                            adapter.update(state.topStories)
+                        }
+                        is TopStoriesViewModel.RequestState.Failed -> {
+                            Log.e(TAG, "Error: ${state.cause}")
+                        }
+                        else -> {
+                            Log.v(TAG, "Unsupervised state: $state")
+                        }
+                    }
                 }
             }
             v.top_stories_recycler_view.adapter = adapter

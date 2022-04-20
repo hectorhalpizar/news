@@ -95,7 +95,7 @@ class FetchTopStoriesFlowUseCaseTest  {
             testing(Section.ARTS)
         } catch (e: Exception) {
         // Then
-            assertTrue(e is FetchTopStoriesFlowUseCase.Error.OnLocalRepository)
+            assertTrue(e is FetchTopStoriesFlowUseCase.Error.Caused)
             coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
             coVerify(exactly = 1) { repository.getStoredTopStories(any()) }
         }
