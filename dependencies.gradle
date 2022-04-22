@@ -3,6 +3,7 @@ ext {
         "mockk" : "1.12.3",
         "room" : "2.4.2",
         "gson" : "2.9.0",
+        "glide": "4.13.0",
         "retrofit2" : "2.9.0",
         "kotlin_coroutines": "1.6.0",
         "lifecycle_vm_ktx" : "2.4.1",

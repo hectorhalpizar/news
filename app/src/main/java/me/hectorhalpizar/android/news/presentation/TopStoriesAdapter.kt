@@ -1,9 +1,12 @@
 package me.hectorhalpizar.android.news.presentation
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_article.view.*
 import me.hectorhalpizar.android.news.R
 import me.hectorhalpizar.core.news.domain.Article
@@ -19,7 +22,7 @@ class TopStoriesAdapter(
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // val imageView: ImageView = view.article_image
+        internal val imageView: ImageView = view.article_image
         internal val title = view.article_title
         internal val description = view.article_description
     }
@@ -31,8 +34,15 @@ class TopStoriesAdapter(
         )
     }
 
+    @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val list = cachedTopStories.toList()
+        Glide
+            .with(holder.imageView.rootView)
+            .load("https://www.at-languagesolutions.com/wp-content/uploads/2016/06/http-1-1024x824.jpg")
+            .centerCrop()
+            .error(R.drawable.ic_launcher_foreground)
+            .into(holder.imageView)
         holder.title.text = list[position].title
         holder.description.text = list[position].abstract
     }
