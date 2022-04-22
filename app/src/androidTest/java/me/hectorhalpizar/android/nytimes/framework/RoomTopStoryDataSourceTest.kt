@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
+import kotlinx.coroutines.runBlocking
 import me.hectorhalpizar.android.nytimes.framework.db.NyTimesRoomDatabase
 import me.hectorhalpizar.android.nytimes.framework.network.Result
 import me.hectorhalpizar.core.nytimes.domain.Section
@@ -31,7 +32,7 @@ class RoomTopStoryDataSourceTest {
     }
 
     @Test
-    fun store_articles_to_database_avoiding_repeated_ones() {
+    fun store_articles_to_database_avoiding_repeated_ones() = runBlocking  {
         // Given
         val feedReader = context.assets.open("feed.json").reader()
         val feed = Gson().fromJson(feedReader, Result::class.java)
