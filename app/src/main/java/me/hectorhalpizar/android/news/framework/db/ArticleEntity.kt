@@ -1,10 +1,11 @@
 package me.hectorhalpizar.android.news.framework.db
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "articles", primaryKeys = ["uri", "mainSection"])
+@Entity(tableName = "articles")
 data class ArticleEntity(
-    val uri: String = DEFAULT_PRIMARY_KEY_VALUE,
+    @PrimaryKey val uri: String = DEFAULT_PRIMARY_KEY_VALUE,
     val mainSection: String,
     val section: String,
     val subsection: String,
@@ -20,9 +21,6 @@ data class ArticleEntity(
     val kicker: String,
     val short_url: String
 ) {
-    fun size() {
-        uri::class.simpleName
-    }
     companion object {
         private const val DEFAULT_PRIMARY_KEY_VALUE = ""
     }

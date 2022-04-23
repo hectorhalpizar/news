@@ -36,15 +36,16 @@ class TopStoriesAdapter(
 
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val list = cachedTopStories.toList()
+        val list = cachedTopStories.toList()[position]
+        val photo = list.multimedia.firstOrNull()
         Glide
             .with(holder.imageView.rootView)
-            .load("https://www.at-languagesolutions.com/wp-content/uploads/2016/06/http-1-1024x824.jpg")
+            .load(photo?.url)
             .centerCrop()
             .error(R.drawable.ic_launcher_foreground)
             .into(holder.imageView)
-        holder.title.text = list[position].title
-        holder.description.text = list[position].abstract
+        holder.title.text = list.title
+        holder.description.text = list.abstract
     }
 
     override fun getItemCount(): Int = cachedTopStories.size

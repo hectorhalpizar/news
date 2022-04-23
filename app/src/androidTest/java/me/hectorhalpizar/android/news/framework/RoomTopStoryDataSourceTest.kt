@@ -45,6 +45,16 @@ class RoomTopStoryDataSourceTest {
         }
 
         // Then
-        assertThat("The feed.json articles amount does not match the SQLite storing", feed.results.size == test.get(Section.ARTS).size)
+        val resultDb = test.get(Section.ARTS)
+
+        val articlesFeedSize = feed.results.size
+        val articlesDbSize = resultDb.size
+        val reasonFailArticles = "Articles: Feed = ${articlesFeedSize}, Database = $articlesDbSize}"
+        assertThat(reasonFailArticles, articlesFeedSize == articlesDbSize)
+
+        val articleFromFirstMultimediaFeedSize = feed.results.first().multimedia.size
+        val articleFromFirstMultimediaDbSize = resultDb.first().multimedia.size
+        val reasonFailMultimedia = "Multimedia in first article: Feed = ${articleFromFirstMultimediaFeedSize}, Database = $articleFromFirstMultimediaDbSize}"
+        assertThat(reasonFailMultimedia, articleFromFirstMultimediaFeedSize == articleFromFirstMultimediaDbSize)
     }
 }

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [ArticleEntity::class],
+    entities = [ArticleEntity::class, MultimediaEntity::class],
     version = 1,
     exportSchema = true
 )
@@ -14,9 +14,11 @@ abstract class NewsRoomDatabase : RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
 
+    abstract fun multimediaDao(): MultimediaDao
+
     companion object {
 
-        private const val DATABASE_NAME = "ny_times.db"
+        private const val DATABASE_NAME = "news.db"
 
         // For Singleton instantiation
         @Volatile private var instance: NewsRoomDatabase? = null

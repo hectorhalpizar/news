@@ -16,10 +16,9 @@ data class Article(
     val published_date: Date,
     val material_type_facet: String,
     val kicker: String,
-    val short_url: String
+    val short_url: String,
+    val multimedia: List<Multimedia> = emptyList()
 ) {
-    var multimedia: List<Multimedia>? = null
-
     companion object {
         private const val DEFAULT_URI_VALUE = ""
     }
