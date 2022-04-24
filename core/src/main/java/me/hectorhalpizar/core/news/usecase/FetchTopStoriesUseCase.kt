@@ -14,12 +14,10 @@ class FetchTopStoriesUseCase(
                     .ifEmpty {
                         throw Error.Handled.RemoteTopStoriesEmpty()
                     }
-                    .forEach { article -> // O(n)
-                        try {
-                            repository.storeTopStoryOnDevice(article, input)
-                        } catch (e: Exception) {
-                            return@let articles
-                        }
+                    try {
+                        repository.storeTopStoriesOnDevice(articles, input)
+                    } catch (e: Exception) {
+                       return@let articles
                     }
                 articles
             }
@@ -30,7 +28,6 @@ class FetchTopStoriesUseCase(
                 throw Error.Caused(storedException)
             }
         }
-
 
     sealed class Error(cause: Throwable?) : BaseUseCase.Error(null, cause) {
         internal sealed class Handled : Error(null) {

@@ -24,13 +24,13 @@ class FetchTopStoriesUseCaseTest  {
             mockk(relaxed = true)
         )
 
-        coEvery { repository.storeTopStoryOnDevice(any(), any()) } returns Unit
+        coEvery { repository.storeTopStoriesOnDevice(any(), any()) } returns Unit
 
         // When
         val result = testing(Section.ARTS)
 
         // Then
-        coVerify(exactly = 3) { repository.storeTopStoryOnDevice(any(), any()) }
+        coVerify(exactly = 1) { repository.storeTopStoriesOnDevice(any(), any()) }
         coVerify(exactly = 0) { repository.getStoredTopStories(any()) }
         assertEquals(3, result.size)
     }
@@ -45,7 +45,7 @@ class FetchTopStoriesUseCaseTest  {
         testing(Section.ARTS)
 
         // Then
-        coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
+        coVerify(exactly = 0) { repository.storeTopStoriesOnDevice(any(), any()) }
         coVerify(exactly = 1) { repository.getStoredTopStories(any()) }
     }
 
@@ -59,13 +59,13 @@ class FetchTopStoriesUseCaseTest  {
             mockk(relaxed = true)
         )
 
-        coEvery { repository.storeTopStoryOnDevice(articleWithExceptionToBeThrown, any()) } throws Exception("Unit Test Exception")
+        coEvery { repository.storeTopStoriesOnDevice(any(), any()) } throws Exception("Unit Test Exception")
 
         // When
         val result = testing(Section.ARTS)
 
         // Then
-        coVerify(exactly = 2) { repository.storeTopStoryOnDevice(any(), any()) }
+        coVerify(exactly = 1) { repository.storeTopStoriesOnDevice(any(), any()) }
         coVerify(exactly = 0) { repository.getStoredTopStories(any()) }
         assertEquals(3, result.size)
     }
@@ -79,7 +79,7 @@ class FetchTopStoriesUseCaseTest  {
         testing(Section.ARTS)
 
         // Then
-        coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
+        coVerify(exactly = 0) { repository.storeTopStoriesOnDevice(any(), any()) }
         coVerify(exactly = 1) { repository.getStoredTopStories(any()) }
     }
 
@@ -96,7 +96,7 @@ class FetchTopStoriesUseCaseTest  {
         } catch (e: Exception) {
         // Then
             assertTrue(e is FetchTopStoriesUseCase.Error.Caused)
-            coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
+            coVerify(exactly = 0) { repository.storeTopStoriesOnDevice(any(), any()) }
             coVerify(exactly = 1) { repository.getStoredTopStories(any()) }
         }
     }
