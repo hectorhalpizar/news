@@ -30,7 +30,7 @@
     <fragment
             android:id="@+id/nav_books"
             android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
-            android:label="@string/top_stories"
+            android:label="@string/menu_books"
             tools:layout="@layout/fragment_top_stories">
         <argument
                 android:name="section"
