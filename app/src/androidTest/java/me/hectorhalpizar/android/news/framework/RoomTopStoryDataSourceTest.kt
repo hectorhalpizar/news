@@ -61,7 +61,7 @@ class RoomTopStoryDataSourceTest {
     }
 
     @Test
-    fun delete_first_article() = runBlocking  {
+    fun delete_first_article() = runBlocking {
         // Given
         val feedReader = context.assets.open("feed.json").reader()
         val feed = Gson().fromJson(feedReader, Result::class.java)
@@ -83,14 +83,40 @@ class RoomTopStoryDataSourceTest {
         val totalArticlesAfterDeletion = result.size
         val totalMultimediaFromResult = getTotalMultimedia(result)
 
-        val reasonOneDeletionFailed = "After deletion you have the same or maybe more articles than before"
+        val reasonOneDeletionFailed = "You have the same or maybe more amount of articles than before"
         assertThat(reasonOneDeletionFailed, totalArticles > totalArticlesAfterDeletion)
 
-        val reasonTwoDeletionFailed = "You have the same first article before the deletion"
+        val reasonTwoDeletionFailed = "This article should had been deleted"
         assertThat(reasonTwoDeletionFailed, resultFirstArticle != articleToDelete)
 
-        val reasonThreeDeletionFailed = "You have the same or maybe more amount of multimedia in the articles list before deletion"
+        val reasonThreeDeletionFailed = "You have the same or maybe more amount of multimedia than before"
         assertThat(reasonThreeDeletionFailed, totalMultimedia != totalMultimediaFromResult)
+    }
+
+    @Test
+    fun delete_all_articles() = runBlocking {
+        // Given
+        val feedReader = context.assets.open("feed.json").reader()
+        val feed = Gson().fromJson(feedReader, Result::class.java)
+
+        feed.results.forEach {
+            test.store(it, Section.ARTS)
+        }
+
+        val initialSize = test.get(Section.ARTS).size
+
+        // When
+        test.deleteAllArticles(Section.ARTS)
+
+        // then
+        val resultSize = test.get(Section.ARTS).size
+
+        val reasonOneDeletionFailed = "You still the same or more amount of articles"
+        assertThat(reasonOneDeletionFailed, initialSize > resultSize)
+
+        val reasonTwoDeletionFailed = "Result size must be zero"
+        assertThat(reasonTwoDeletionFailed, resultSize == 0)
+
     }
 
     private fun getTotalMultimedia(articles: List<Article>) : Int {

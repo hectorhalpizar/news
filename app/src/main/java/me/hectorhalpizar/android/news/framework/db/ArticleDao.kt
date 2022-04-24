@@ -11,13 +11,10 @@ interface ArticleDao {
     @Delete
     suspend fun deleteArticle(article: ArticleEntity)
 
-    @Query("SELECT * FROM articles WHERE mainSection = :section")
-    suspend fun getTopStories(section: String) : List<ArticleEntity>
+    @Query("DELETE FROM articles WHERE mainSection = :section")
+    suspend fun deleteAllArticles(section: String)
 
     @Transaction
     @Query("SELECT * FROM articles WHERE mainSection = :section AND uri IN (SELECT DISTINCT(multimedia_uri) FROM multimedia)")
     suspend fun getTopStoriesWithMultimedia(section: String) : List<ArticleAndMultimediaEntity>
-
-    @Query("SELECT * FROM articles")
-    suspend fun getTopStories() : List<ArticleEntity>
 }

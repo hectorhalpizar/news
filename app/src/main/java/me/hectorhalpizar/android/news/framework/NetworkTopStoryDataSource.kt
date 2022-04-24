@@ -15,6 +15,10 @@ class NetworkTopStoryDataSource(private val restApi: NewsRestApi) : TopStoryData
         throw IllegalStateException("There is not a Network function to Delete a Top Story article.")
     }
 
+    override suspend fun deleteAllArticles(fromSection: Section) {
+        throw IllegalStateException("There is not a Network function to Delete all the Top Stories articles.")
+    }
+
     override suspend fun get(section: Section): List<Article> =
         restApi.getTopStories(section.name.lowercase()).let { response ->
             if (response.isSuccessful) {

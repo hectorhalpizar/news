@@ -7,4 +7,5 @@ interface TopStoryDataSource {
     suspend fun store(article: Article, section: Section)
     suspend fun get(section: Section) : List<Article>
     suspend fun delete(article: Article, section: Section)
+    suspend fun deleteAllArticles(fromSection: Section)
 }

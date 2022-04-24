@@ -14,6 +14,7 @@ class TopStoryRepository(
         }
 
     suspend fun storeTopStoriesOnDevice(article: List<Article>, section: Section) {
+        localDataSource.deleteAllArticles(section)
         article.forEach {
             localDataSource.store(it, section)
         }
