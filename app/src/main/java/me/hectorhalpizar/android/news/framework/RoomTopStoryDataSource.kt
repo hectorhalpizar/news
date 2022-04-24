@@ -20,7 +20,7 @@ class RoomTopStoryDataSource internal constructor(database: NewsRoomDatabase): T
     override suspend fun store(article: Article, section: Section) {
         article.let { a ->
             articleDao.addArticle(map(a, mainSection = section.name))
-            a.multimedia.forEach { m -> multimediaDao.addMultimedia(map(a.uri, m)) }
+            a.multimedia?.forEach { m -> multimediaDao.addMultimedia(map(a.uri, m)) }
         }
     }
 

@@ -1,6 +1,7 @@
 package me.hectorhalpizar.android.news.presentation
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,13 +38,15 @@ class TopStoriesAdapter(
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val list = cachedTopStories.toList()[position]
-        val photo = list.multimedia.firstOrNull()
+        val photo = list.multimedia?.firstOrNull()
+
         Glide
             .with(holder.imageView.rootView)
             .load(photo?.url)
             .centerCrop()
             .error(R.drawable.ic_launcher_foreground)
             .into(holder.imageView)
+
         holder.title.text = list.title
         holder.description.text = list.abstract
     }

@@ -10,7 +10,32 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="top_stories">Top Stories</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="menu_arts">ARTS</string>
+    <string name="menu_automobiles">AUTOMOBILES</string>
+    <string name="menu_books">BOOKS</string>
+    <string name="menu_business">BUSINESS</string>
+    <string name="menu_fashion">FASHION</string>
+    <string name="menu_food">FOOD</string>
+    <string name="menu_health">HEALTH</string>
+    <string name="menu_home">HOME</string>
+    <string name="menu_insider">INSIDER</string>
+    <string name="menu_magazine">MAGAZINE</string>
+    <string name="menu_movies">MOVIES</string>
+    <string name="menu_obituaries">OBITUARIES</string>
+    <string name="menu_opinion">OPINION</string>
+    <string name="menu_politics">POLITICS</string>
+    <string name="menu_real_estate">REAL_ESTATE</string>
+    <string name="menu_science">SCIENCE</string>
+    <string name="menu_sports">SPORTS</string>
+    <string name="menu_sunday_review">SUNDAY_REVIEW</string>
+    <string name="menu_technology">TECHNOLOGY</string>
+    <string name="menu_theater">THEATER</string>
+    <string name="menu_t_magazine">T_MAGAZINE</string>
+    <string name="menu_travel">TRAVEL</string>
+    <string name="menu_upshot">UPSHOT</string>
+    <string name="menu_us">US</string>
+    <string name="menu_world">WORLD</string>
 </resources>

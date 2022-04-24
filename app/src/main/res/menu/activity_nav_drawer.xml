@@ -4,17 +4,118 @@
       tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_arts"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="@string/menu_arts"/>
+        <item
+                android:id="@+id/nav_automobiles"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="@string/menu_automobiles"/>
+        <item
+                android:id="@+id/nav_books"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_books"/>
+        <item
+                android:id="@+id/nav_business"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_business"/>
+        <item
+                android:id="@+id/nav_fashion"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_fashion"/>
+        <item
+                android:id="@+id/nav_food"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_food"/>
+        <item
+                android:id="@+id/nav_health"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_health"/>
         <item
                 android:id="@+id/nav_home"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_home"/>
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="@string/menu_gallery"/>
-        <item
-                android:id="@+id/nav_slideshow"
+                android:id="@+id/nav_insider"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/menu_slideshow"/>
+                android:title="@string/menu_insider"/>
+        <item
+                android:id="@+id/nav_magazine"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_magazine"/>
+        <item
+                android:id="@+id/nav_movies"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_movies"/>
+
+        <item
+                android:id="@+id/nav_obituaries"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_obituaries"/>
+
+        <item
+                android:id="@+id/nav_politics"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_politics"/>
+
+        <item
+                android:id="@+id/nav_opinion"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_opinion"/>
+
+        <item
+                android:id="@+id/nav_real_estate"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_real_estate"/>
+
+        <item
+                android:id="@+id/nav_science"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_science"/>
+
+        <item
+                android:id="@+id/nav_sports"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_sports"/>
+
+        <item
+                android:id="@+id/nav_sunday_review"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_sunday_review"/>
+
+        <item
+                android:id="@+id/nav_technology"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_technology"/>
+
+        <item
+                android:id="@+id/nav_theater"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_theater"/>
+
+        <item
+                android:id="@+id/nav_t_magazine"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_t_magazine"/>
+
+        <item
+                android:id="@+id/nav_travel"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_travel"/>
+
+        <item
+                android:id="@+id/nav_upshot"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_upshot"/>
+
+        <item
+                android:id="@+id/nav_us"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_us"/>
+
+        <item
+                android:id="@+id/nav_world"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_world"/>
     </group>
 </menu>

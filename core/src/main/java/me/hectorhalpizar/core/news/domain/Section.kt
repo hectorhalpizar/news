@@ -1,6 +1,6 @@
 package me.hectorhalpizar.core.news.domain
 
-enum class Section() {
+enum class Section {
     ARTS,
     AUTOMOBILES,
     BOOKS,

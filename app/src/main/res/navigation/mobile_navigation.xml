@@ -3,23 +3,288 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@+id/nav_home">
+            app:startDestination="@+id/nav_arts">
+
+    <fragment
+            android:id="@+id/nav_arts"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_arts"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="ARTS"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_automobiles"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_automobiles"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="AUTOMOBILES"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_books"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/top_stories"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="BOOKS"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_business"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_business"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="BUSINESS"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/nav_fashion"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_fashion"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="FASHION"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_food"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_food"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="FOOD"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/nav_health"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_health"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="HEALTH"/>
+    </fragment>
 
     <fragment
             android:id="@+id/nav_home"
-            android:name="me.hectorhalpizar.android.news.ui.home.HomeFragment"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
             android:label="@string/menu_home"
-            tools:layout="@layout/fragment_home"/>
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="HOME"/>
+    </fragment>
 
     <fragment
-            android:id="@+id/nav_gallery"
-            android:name="me.hectorhalpizar.android.news.ui.gallery.GalleryFragment"
-            android:label="@string/menu_gallery"
-            tools:layout="@layout/fragment_gallery"/>
+            android:id="@+id/nav_insider"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_health"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="HEALTH"/>
+    </fragment>
 
     <fragment
-            android:id="@+id/nav_slideshow"
-            android:name="me.hectorhalpizar.android.news.ui.slideshow.SlideshowFragment"
-            android:label="@string/menu_slideshow"
-            tools:layout="@layout/fragment_slideshow"/>
+            android:id="@+id/nav_magazine"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_magazine"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="MAGAZINE"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_movies"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_movies"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="MOVIES"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/nav_obituaries"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_obituaries"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="OBITUARIES"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_politics"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_politics"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="POLITICS"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_opinion"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_opinion"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="OPINION"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/nav_real_estate"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_real_estate"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="REAL_ESTATE"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_science"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_science"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="SCIENCE"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_sports"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_sports"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="SPORTS"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_sunday_review"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_sunday_review"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="SUNDAY_REVIEW"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_technology"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_technology"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="TECHNOLOGY"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/nav_theater"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_theater"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="THEATER"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_t_magazine"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_t_magazine"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="T_MAGAZINE"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_travel"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_travel"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="TRAVEL"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/nav_upshot"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_upshot"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="UPSHOT"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_us"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_us"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="US"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/nav_world"
+            android:name="me.hectorhalpizar.android.news.presentation.TopStoriesFragment"
+            android:label="@string/menu_world"
+            tools:layout="@layout/fragment_top_stories">
+        <argument
+                android:name="section"
+                app:argType="string"
+                android:defaultValue="WORLD"/>
+    </fragment>
+
+
 </navigation>
