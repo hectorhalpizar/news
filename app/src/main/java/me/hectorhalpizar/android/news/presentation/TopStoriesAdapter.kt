@@ -1,7 +1,6 @@
 package me.hectorhalpizar.android.news.presentation
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,7 @@ class TopStoriesAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal val imageView: ImageView = view.article_image
         internal val title = view.article_title
-        internal val description = view.article_description
+        internal val abstract = view.article_description
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,18 +36,29 @@ class TopStoriesAdapter(
 
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val list = cachedTopStories.toList()[position]
-        val photo = list.multimedia?.firstOrNull()
+        val article = cachedTopStories.toList()[position]
+        val photo = article.multimedia?.firstOrNull()
+
+        if (article.title.trim().isNotBlank()) {
+            holder.title.text = article.title
+        } else {
+            holder.title.setText(R.string.title_not_available)
+        }
+
+        if (article.abstract.trim().isNotBlank()) {
+            holder.abstract.text = article.abstract
+        } else {
+            holder.abstract.setText(R.string.abstract_not_available)
+        }
 
         Glide
             .with(holder.imageView.rootView)
             .load(photo?.url)
             .centerCrop()
-            .error(R.drawable.ic_launcher_foreground)
+            .error(R.drawable.ic_image_not_available)
             .into(holder.imageView)
 
-        holder.title.text = list.title
-        holder.description.text = list.abstract
+
     }
 
     override fun getItemCount(): Int = cachedTopStories.size

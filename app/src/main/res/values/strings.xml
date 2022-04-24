@@ -38,6 +38,8 @@
     <string name="menu_upshot">UPSHOT</string>
     <string name="menu_us">US</string>
     <string name="menu_world">WORLD</string>
+    <string name="title_not_available">Title Not Available</string>
+    <string name="abstract_not_available">Abstract Not Available at the moment</string>
     <string name="failed_fetch_top_story_message">Not able to retrieved any \"%s\" articles at the moment.\n\nRetry or try again later
     </string>
     <string name="retry_button_title">Retry</string>
