@@ -20,7 +20,7 @@ class NetworkTopStoryDataSource(private val restApi: NewsRestApi) : TopStoryData
     }
 
     override suspend fun get(section: Section): List<Article> =
-        restApi.getTopStories(section.name.lowercase()).let { response ->
+        restApi.getTopStories(section.sectionName.lowercase()).let { response ->
             if (response.isSuccessful) {
                 response.body()?.results ?: run {
                     throw Error.Payload.BodyNull()

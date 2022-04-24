@@ -19,13 +19,13 @@ class RoomTopStoryDataSource internal constructor(database: NewsRoomDatabase): T
 
     override suspend fun store(article: Article, section: Section) {
         article.let { a ->
-            articleDao.addArticle(map(a, mainSection = section.name))
+            articleDao.addArticle(map(a, mainSection = section.sectionName))
             a.multimedia?.forEach { m -> multimediaDao.addMultimedia(map(a.uri, m)) }
         }
     }
 
     override suspend fun get(section: Section): List<Article> =
-        articleDao.getTopStoriesWithMultimedia(section.name)
+        articleDao.getTopStoriesWithMultimedia(section.sectionName)
             .let {
                 val result = arrayListOf<Article>()
                 it.forEach { entity ->
@@ -37,11 +37,11 @@ class RoomTopStoryDataSource internal constructor(database: NewsRoomDatabase): T
             }
 
     override suspend fun delete(article: Article, section: Section) {
-        articleDao.deleteArticle(map(article, section.name))
+        articleDao.deleteArticle(map(article, section.sectionName))
     }
 
     override suspend fun deleteAllArticles(fromSection: Section) {
-        articleDao.deleteAllArticles(fromSection.name)
+        articleDao.deleteAllArticles(fromSection.sectionName)
     }
 
     private fun map(a: ArticleEntity, multimedia: List<Multimedia> = emptyList()) =
