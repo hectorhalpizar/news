@@ -38,6 +38,10 @@ class RoomTopStoryDataSource internal constructor(database: NewsRoomDatabase): T
                 result
             }
 
+    override suspend fun delete(article: Article, section: Section) {
+        articleDao.deleteArticle(map(article, section.name))
+    }
+
     private fun map(a: ArticleEntity, multimedia: List<Multimedia> = emptyList()) =
         Article(
             section = a.section,

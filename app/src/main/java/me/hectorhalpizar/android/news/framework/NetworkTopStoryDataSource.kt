@@ -8,7 +8,11 @@ import java.io.InputStream
 
 class NetworkTopStoryDataSource(private val restApi: NewsRestApi) : TopStoryDataSource {
     override suspend fun store(article: Article, section: Section) {
-        throw IllegalStateException("There is not a Network function to Store an Top Story article.")
+        throw IllegalStateException("There is not a Network function to Store a Top Story article.")
+    }
+
+    override suspend fun delete(article: Article, section: Section) {
+        throw IllegalStateException("There is not a Network function to Delete a Top Story article.")
     }
 
     override suspend fun get(section: Section): List<Article> =

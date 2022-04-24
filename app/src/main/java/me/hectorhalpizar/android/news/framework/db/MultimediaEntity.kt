@@ -1,9 +1,10 @@
 package me.hectorhalpizar.android.news.framework.db
 
 import androidx.room.*
+import androidx.room.ForeignKey.CASCADE
 
 @Entity(tableName = "multimedia",
-    foreignKeys = [ForeignKey(entity = ArticleEntity::class, parentColumns = ["uri"], childColumns = ["multimedia_uri"])],
+    foreignKeys = [ForeignKey(onUpdate = CASCADE, onDelete = CASCADE, entity = ArticleEntity::class, parentColumns = ["uri"], childColumns = ["multimedia_uri"])],
     indices = [Index("multimedia_uri")]
 )
 data class MultimediaEntity(
