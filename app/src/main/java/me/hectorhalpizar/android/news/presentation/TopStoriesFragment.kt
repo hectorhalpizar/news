@@ -1,6 +1,5 @@
 package me.hectorhalpizar.android.news.presentation
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,13 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.fragment_top_stories.*
 import kotlinx.android.synthetic.main.fragment_top_stories.view.*
-import kotlinx.android.synthetic.main.item_article.view.*
 import me.hectorhalpizar.android.news.R
 import me.hectorhalpizar.android.news.framework.NewsViewModelFactory
 import me.hectorhalpizar.core.news.domain.Section
@@ -34,7 +30,7 @@ class TopStoriesFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        section?.let { viewModel.fetch(Section.valueOf(it)) }
+        fetch()
     }
 
     override fun onCreateView(
@@ -80,10 +76,13 @@ class TopStoriesFragment : Fragment() {
             v.failed_fetch_top_story_textview.text =
                 String.format(
                     getText(R.string.failed_fetch_top_story_message).toString(),
-                    (activity as AppCompatActivity?)?.supportActionBar?.title
+                    (activity as AppCompatActivity?)?.supportActionBar?.title ?: section
                 )
+            v.retry_fetch_top_stories.setOnClickListener { fetch() }
         }
     }
+
+    private fun fetch() = section?.let { viewModel.fetch(Section.valueOf(it)) }
 
     companion object {
         private const val SECTION_EXTRA = "section"
