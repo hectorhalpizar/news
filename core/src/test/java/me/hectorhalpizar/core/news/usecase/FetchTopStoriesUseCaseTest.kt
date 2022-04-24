@@ -71,19 +71,6 @@ class FetchTopStoriesUseCaseTest  {
     }
 
     @Test
-    fun `Network error happened fetching server articles`() = runBlocking {
-        // Given
-        coEvery { repository.getRemoteTopStories(any()) } throws TopStoryRepository.Error.Network(null)
-
-        // When
-        testing(Section.ARTS)
-
-        // Then
-        coVerify(exactly = 0) { repository.storeTopStoriesOnDevice(any(), any()) }
-        coVerify(exactly = 1) { repository.getStoredTopStories(any()) }
-    }
-
-    @Test
     fun `Network and local error happened fetching articles`(): Unit = runBlocking {
         // Given
         coEvery { repository.getRemoteTopStories(any()) } throws TopStoryRepository.Error.Network(null)

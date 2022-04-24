@@ -23,9 +23,11 @@ class FetchTopStoriesUseCase(
             }
         } catch (e: Exception) {
             try {
-                repository.getStoredTopStories(input)
-            } catch (storedException: Exception) {
-                throw Error.Caused(storedException)
+                repository.getStoredTopStories(input).let { result ->
+                    result.ifEmpty { throw Exception(e) }
+                }
+            } catch (exceptionOnFetchingFromDb: Exception) {
+                throw Error.Caused(exceptionOnFetchingFromDb)
             }
         }
 
