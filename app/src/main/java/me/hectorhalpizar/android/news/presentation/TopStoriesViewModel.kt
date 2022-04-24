@@ -8,7 +8,7 @@ import me.hectorhalpizar.android.news.framework.NewsViewModel
 import me.hectorhalpizar.core.news.domain.Article
 import me.hectorhalpizar.core.news.domain.Section
 import me.hectorhalpizar.core.news.update
-import me.hectorhalpizar.core.news.usecase.FetchTopStoriesFlowUseCase
+import me.hectorhalpizar.core.news.usecase.FetchTopStoriesUseCase
 import me.hectorhalpizar.core.news.usecase.Interactor
 
 class TopStoriesViewModel(interactor: Interactor) : NewsViewModel(interactor) {
@@ -20,11 +20,11 @@ class TopStoriesViewModel(interactor: Interactor) : NewsViewModel(interactor) {
         viewModelScope.launch {
             _fetchingState.postValue(RequestState.Fetching)
             try {
-                interactor.fetchTopStoriesFlowUseCase(section).let {
+                interactor.fetchTopStoriesUseCase(section).let {
                     cachedTopStories.update(it)
                 }
                 _fetchingState.postValue(RequestState.Successful(cachedTopStories))
-            } catch (e: FetchTopStoriesFlowUseCase.Error.Caused) {
+            } catch (e: FetchTopStoriesUseCase.Error.Caused) {
                 _fetchingState.postValue(RequestState.Failed(e.cause))
             }
         }

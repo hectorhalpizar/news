@@ -6,7 +6,7 @@ import me.hectorhalpizar.android.news.framework.NewsViewModelFactory
 import me.hectorhalpizar.android.news.framework.RoomTopStoryDataSource
 import me.hectorhalpizar.android.news.framework.network.NetworkService
 import me.hectorhalpizar.core.news.data.TopStoryRepository
-import me.hectorhalpizar.core.news.usecase.FetchTopStoriesFlowUseCase
+import me.hectorhalpizar.core.news.usecase.FetchTopStoriesUseCase
 import me.hectorhalpizar.core.news.usecase.Interactor
 
 class NewsApplication : Application() {
@@ -17,6 +17,6 @@ class NewsApplication : Application() {
         val remote = NetworkTopStoryDataSource(NetworkService.nyTimes)
         val repository = TopStoryRepository(local, remote)
 
-        NewsViewModelFactory.inject(Interactor(FetchTopStoriesFlowUseCase(repository)))
+        NewsViewModelFactory.inject(Interactor(FetchTopStoriesUseCase(repository)))
     }
 }

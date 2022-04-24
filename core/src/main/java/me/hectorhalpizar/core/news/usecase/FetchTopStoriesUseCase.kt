@@ -4,7 +4,7 @@ import me.hectorhalpizar.core.news.data.TopStoryRepository
 import me.hectorhalpizar.core.news.domain.Article
 import me.hectorhalpizar.core.news.domain.Section
 
-class FetchTopStoriesFlowUseCase(
+class FetchTopStoriesUseCase(
     private val repository: TopStoryRepository
 ) : BaseUseCase<Section, List<Article>> {
     override suspend fun invoke(input: Section): List<Article> =

@@ -10,7 +10,7 @@ import me.hectorhalpizar.android.news.MainCoroutineRule
 import me.hectorhalpizar.android.news.getOrAwaitValue
 import me.hectorhalpizar.core.news.domain.Article
 import me.hectorhalpizar.core.news.domain.Section
-import me.hectorhalpizar.core.news.usecase.FetchTopStoriesFlowUseCase
+import me.hectorhalpizar.core.news.usecase.FetchTopStoriesUseCase
 import me.hectorhalpizar.core.news.usecase.Interactor
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -21,7 +21,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class TopStoriesViewModelTest {
 
-    private val fetchTopStories: FetchTopStoriesFlowUseCase = mockk(relaxed = true)
+    private val fetchTopStories: FetchTopStoriesUseCase = mockk(relaxed = true)
     private val interactor = Interactor(fetchTopStories)
     private val testing: TopStoriesViewModel = TopStoriesViewModel(interactor)
 
@@ -43,12 +43,12 @@ class TopStoriesViewModelTest {
 
     @Test
     fun `fetch with the use case error`() = mainCoroutineRule.runBlockingTest {
-        coEvery { fetchTopStories.invoke(any()) } throws FetchTopStoriesFlowUseCase.Error.Caused(IllegalArgumentException("Unit Test"))
+        coEvery { fetchTopStories.invoke(any()) } throws FetchTopStoriesUseCase.Error.Caused(IllegalArgumentException("Unit Test"))
 
         try {
             testing.fetch(Section.ARTS)
         } catch(e: Exception) {
-            assertTrue(e is FetchTopStoriesFlowUseCase.Error.Caused)
+            assertTrue(e is FetchTopStoriesUseCase.Error.Caused)
             assertTrue(testing.fetchingState.getOrAwaitValue() is TopStoriesViewModel.RequestState.Failed)
         }
     }

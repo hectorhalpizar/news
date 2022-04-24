@@ -11,9 +11,9 @@ import me.hectorhalpizar.core.news.domain.Section
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class FetchTopStoriesFlowUseCaseTest  {
+class FetchTopStoriesUseCaseTest  {
     private val repository: TopStoryRepository = mockk(relaxed = true)
-    private val testing = FetchTopStoriesFlowUseCase(repository)
+    private val testing = FetchTopStoriesUseCase(repository)
 
     @Test
     fun `Results from the server returned`() = runBlocking {
@@ -95,7 +95,7 @@ class FetchTopStoriesFlowUseCaseTest  {
             testing(Section.ARTS)
         } catch (e: Exception) {
         // Then
-            assertTrue(e is FetchTopStoriesFlowUseCase.Error.Caused)
+            assertTrue(e is FetchTopStoriesUseCase.Error.Caused)
             coVerify(exactly = 0) { repository.storeTopStoryOnDevice(any(), any()) }
             coVerify(exactly = 1) { repository.getStoredTopStories(any()) }
         }
