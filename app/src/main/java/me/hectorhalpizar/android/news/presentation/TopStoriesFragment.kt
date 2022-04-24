@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_stories.view.*
 import me.hectorhalpizar.android.news.R
 import me.hectorhalpizar.android.news.framework.NewsViewModelFactory
@@ -50,7 +52,18 @@ class TopStoriesFragment : Fragment() {
                     }
                 }
             }
-            v.top_stories_recycler_view.adapter = adapter
+            v.top_stories_recycler_view.apply {
+                this.adapter = adapter
+                addItemDecoration(
+                    DividerItemDecoration(
+                        context,
+                        (layoutManager as LinearLayoutManager).orientation
+                    ).apply {
+                        this@TopStoriesFragment.activity?.getDrawable(R.drawable.divider)
+                            ?.let { it1 -> setDrawable(it1) }
+                    }
+                )
+            }
         }
     }
 

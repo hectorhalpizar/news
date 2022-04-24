@@ -9,6 +9,7 @@
     app:cardPreventCornerOverlap="true">
 
     <LinearLayout
+            android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -16,7 +17,8 @@
                 android:id="@+id/article_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="?attr/colorPrimaryDark"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
                 android:scaleType="centerCrop"
                 tools:ignore="ContentDescription"/>
         <LinearLayout
@@ -28,12 +30,14 @@
                     android:id="@+id/article_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     tools:text="Some title"/>
             <TextView
                     android:id="@+id/article_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textAppearance="?attr/textAppearanceBody2"
                     tools:text="Some description"/>
         </LinearLayout>
