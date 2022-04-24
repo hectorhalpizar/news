@@ -27,15 +27,18 @@
     <string name="menu_obituaries">OBITUARIES</string>
     <string name="menu_opinion">OPINION</string>
     <string name="menu_politics">POLITICS</string>
-    <string name="menu_real_estate">REAL_ESTATE</string>
+    <string name="menu_real_estate">REAL ESTATE</string>
     <string name="menu_science">SCIENCE</string>
     <string name="menu_sports">SPORTS</string>
-    <string name="menu_sunday_review">SUNDAY_REVIEW</string>
+    <string name="menu_sunday_review">SUNDAY REVIEW</string>
     <string name="menu_technology">TECHNOLOGY</string>
     <string name="menu_theater">THEATER</string>
-    <string name="menu_t_magazine">T_MAGAZINE</string>
+    <string name="menu_t_magazine">T MAGAZINE</string>
     <string name="menu_travel">TRAVEL</string>
     <string name="menu_upshot">UPSHOT</string>
     <string name="menu_us">US</string>
     <string name="menu_world">WORLD</string>
+    <string name="failed_fetch_top_story_message">Not able to retrieved any \"%s\" articles at the moment.\n\nRetry or try again later
+    </string>
+    <string name="retry_button_title">Retry</string>
 </resources>
