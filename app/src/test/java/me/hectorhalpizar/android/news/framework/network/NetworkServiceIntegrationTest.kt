@@ -9,7 +9,7 @@ class NetworkServiceIntegrationTest {
 
     @Test
     fun `NY Times successful request`() : Unit = runBlocking {
-        val result = NetworkService.nyTimes.getTopStories(Section.ARTS.sectionName.lowercase())
+        val result = NetworkService.newsApi.getTopStories(Section.ARTS.sectionName.lowercase())
         assertTrue(result.isSuccessful)
         result.body()?.results?.let {
             assertTrue(it.isNotEmpty())
@@ -18,13 +18,13 @@ class NetworkServiceIntegrationTest {
 
     @Test
     fun `NY Times unknown section request`() = runBlocking {
-        val result = NetworkService.nyTimes.getTopStories("asdfg")
+        val result = NetworkService.newsApi.getTopStories("asdfg")
         assertFalse(result.isSuccessful)
     }
 
     @Test
     fun `NY Times incorrect API key request`(): Unit = runBlocking {
-        val result = NetworkService.nyTimes.getTopStories(Section.ARTS.sectionName.lowercase(), "asdfg")
+        val result = NetworkService.newsApi.getTopStories(Section.ARTS.sectionName.lowercase(), "asdfg")
         assertFalse(result.isSuccessful)
         println("Code = " + result.code())
         val `is` = result.errorBody()?.byteStream()

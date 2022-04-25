@@ -14,7 +14,7 @@ class NewsApplication : Application() {
         super.onCreate()
 
         val local = RoomTopStoryDataSource(this.applicationContext)
-        val remote = NetworkTopStoryDataSource(NetworkService.nyTimes)
+        val remote = NetworkTopStoryDataSource(NetworkService.newsApi)
         val repository = TopStoryRepository(local, remote)
 
         NewsViewModelFactory.inject(Interactor(FetchTopStoriesUseCase(repository)))
