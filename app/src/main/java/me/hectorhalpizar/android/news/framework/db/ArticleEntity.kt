@@ -14,9 +14,9 @@ data class ArticleEntity(
     val url: String,
     val byline: String,
     val item_type: String,
-    val updated_date: Long,
-    val created_date: Long,
-    val published_date: Long,
+    val updated_date: Long?,
+    val created_date: Long?,
+    val published_date: Long?,
     val material_type_facet: String,
     val kicker: String,
     val short_url: String
