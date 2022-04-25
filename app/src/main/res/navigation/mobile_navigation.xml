@@ -285,6 +285,4 @@
                 app:argType="string"
                 android:defaultValue="WORLD"/>
     </fragment>
-
-
 </navigation>

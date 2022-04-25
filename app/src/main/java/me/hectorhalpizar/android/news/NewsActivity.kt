@@ -1,9 +1,11 @@
 package me.hectorhalpizar.android.news
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -40,6 +42,20 @@ class NewsActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navigationSection.keys.toSet(), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.nav_provided_by -> {
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.nytimes.com/")).also { intent ->
+                        startActivity(intent)
+                    }
+                }
+                else -> {
+                    navController.navigate(it.itemId)
+                }
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
