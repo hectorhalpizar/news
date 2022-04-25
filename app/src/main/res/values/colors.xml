@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary Colors -->
+    <color name="ochre">#d08834</color>
+    <color name="ochre_light">#ffb862</color>
+    <color name="ochre_dark">#9a5b00</color>
+
+    <!-- Secondary colors -->
+    <color name="gray_blue">#83b0b5</color>
+    <color name="gray_blue_light">#b4e2e7</color>
+    <color name="gray_blue_dark">#558185</color>
 </resources>
