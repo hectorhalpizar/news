@@ -1,0 +1,5 @@
+Light
+https://material.io/resources/color/#!/?view.left=0&view.right=1&secondary.color=D84315&primary.color=33691E
+
+Dark
+https://material.io/resources/color/#!/?view.left=0&view.right=1&secondary.color=D84315&primary.color=33691E
