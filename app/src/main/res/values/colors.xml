@@ -8,13 +8,26 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Light Theme -->
     <!-- Primary Colors -->
-    <color name="ochre">#d08834</color>
-    <color name="ochre_light">#ffb862</color>
-    <color name="ochre_dark">#9a5b00</color>
+    <color name="ochre">#fa9f0a</color>
+    <color name="ochre_light">#ffd04b</color>
+    <color name="ochre_dark">#c17000</color>
 
     <!-- Secondary colors -->
-    <color name="gray_blue">#83b0b5</color>
-    <color name="gray_blue_light">#b4e2e7</color>
-    <color name="gray_blue_dark">#558185</color>
+    <color name="gray_blue">#4658c4</color>
+    <color name="gray_blue_light">#7d84f8</color>
+    <color name="gray_blue_dark">#002f93</color>
+
+    <!--Dark Theme -->
+    <!-- Primary Colors -->
+    <color name="grey">#1b1a1d</color>
+    <color name="grey_light">#424044</color>
+    <color name="grey_dark">@color/black</color>
+
+    <!-- Secondary colors -->
+    <color name="rose">#742d30</color>
+    <color name="rose_light">#a65959</color>
+    <color name="rose_dark">#440008</color>
+
 </resources>
