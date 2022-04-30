@@ -1,12 +1,13 @@
 package me.hectorhalpizar.android.news.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_stories.*
@@ -25,6 +26,7 @@ class TopStoriesFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             section = it.getString(SECTION_EXTRA)
+            setHasOptionsMenu(true)
         } ?: throw IllegalArgumentException("A valid section must be provided")
     }
 
@@ -82,15 +84,14 @@ class TopStoriesFragment : BaseFragment() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        fetch()
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun fetch() = section?.let { viewModel.fetch(Section.valueOf(it)) }
 
     companion object {
         private const val SECTION_EXTRA = "section"
-        fun newInstance(section: String) =
-            TopStoriesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(SECTION_EXTRA, section)
-                }
-            }
     }
 }

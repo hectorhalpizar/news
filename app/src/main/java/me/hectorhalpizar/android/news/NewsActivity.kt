@@ -2,7 +2,6 @@ package me.hectorhalpizar.android.news
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -16,7 +15,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.nav_header_news.*
 import me.hectorhalpizar.android.news.databinding.ActivityNewsBinding
 import me.hectorhalpizar.android.news.framework.versionCode
 import me.hectorhalpizar.android.news.framework.versionName
