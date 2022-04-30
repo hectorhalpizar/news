@@ -10,24 +10,24 @@
 
     <!-- Light Theme -->
     <!-- Primary Colors -->
-    <color name="ochre">#fa9f0a</color>
-    <color name="ochre_light">#ffd04b</color>
-    <color name="ochre_dark">#c17000</color>
+    <color name="primary">#f1f1f1</color>
+    <color name="primary_light">@color/white</color>
+    <color name="primary_dark">#bebebe</color>
 
     <!-- Secondary colors -->
-    <color name="gray_blue">#4658c4</color>
-    <color name="gray_blue_light">#7d84f8</color>
-    <color name="gray_blue_dark">#002f93</color>
+    <color name="secondary">#1a1a1a</color>
+    <color name="secondary_light">#404040</color>
+    <color name="secondary_dark">@color/black</color>
 
     <!--Dark Theme -->
     <!-- Primary Colors -->
-    <color name="grey">#1b1a1d</color>
-    <color name="grey_light">#424044</color>
-    <color name="grey_dark">@color/black</color>
+    <color name="night_primary">#1e1e1e</color>
+    <color name="night_primary_light">#454545</color>
+    <color name="night_primary_dark">@color/black</color>
 
     <!-- Secondary colors -->
-    <color name="rose">#742d30</color>
-    <color name="rose_light">#a65959</color>
-    <color name="rose_dark">#440008</color>
+    <color name="night_secondary">#d8d8d8</color>
+    <color name="night_secondary_light">@color/white</color>
+    <color name="night_secondary_dark">#a7a7a7</color>
 
 </resources>
