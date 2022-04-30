@@ -10,14 +10,14 @@
 
     <!-- Light Theme -->
     <!-- Primary Colors -->
-    <color name="primary">#f1f1f1</color>
-    <color name="primary_light">@color/white</color>
-    <color name="primary_dark">#bebebe</color>
+    <color name="default_primary">#f1f1f1</color>
+    <color name="default_primary_light">@color/white</color>
+    <color name="default_primary_dark">#bebebe</color>
 
     <!-- Secondary colors -->
-    <color name="secondary">#1a1a1a</color>
-    <color name="secondary_light">#404040</color>
-    <color name="secondary_dark">@color/black</color>
+    <color name="default_secondary">#1a1a1a</color>
+    <color name="default_secondary_light">#404040</color>
+    <color name="default_secondary_dark">@color/black</color>
 
     <!--Dark Theme -->
     <!-- Primary Colors -->
