@@ -17,7 +17,7 @@ import me.hectorhalpizar.core.news.domain.Section
 
 private const val TAG = "TopStoriesFragment"
 
-class TopStoriesFragment : Fragment() {
+class TopStoriesFragment : BaseFragment() {
     private var section: String? = null
     private lateinit var viewModel: TopStoriesViewModel
 
