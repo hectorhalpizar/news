@@ -1,6 +1,5 @@
 package me.hectorhalpizar.android.news.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,7 +25,6 @@ class TopStoriesFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             section = it.getString(SECTION_EXTRA)
-            setHasOptionsMenu(true)
         } ?: throw IllegalArgumentException("A valid section must be provided")
     }
 
@@ -85,7 +83,9 @@ class TopStoriesFragment : BaseFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        fetch()
+        if (item.itemId == R.id.menu_refresh) {
+            fetch()
+        }
         return super.onOptionsItemSelected(item)
     }
 
