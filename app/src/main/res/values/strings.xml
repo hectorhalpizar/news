@@ -39,13 +39,16 @@
     <string name="menu_upshot">UPSHOT</string>
     <string name="menu_us">US</string>
     <string name="menu_world">WORLD</string>
+    <string name="menu_about">ABOUT</string>
     <string name="title_not_available">Title Not Available</string>
     <string name="abstract_not_available">Abstract Not Available at the moment</string>
     <string name="date_unavailable">Date unavailable</string>
     <string name="article_not_available">Article not available</string>
     <string name="published_on">Published on: %s</string>
-    <string name="failed_fetch_top_story_message">Not able to retrieved any \"%s\" articles at the moment.\n\nRetry or try again later
+    <string name="failed_fetch_top_story_message">Not able to retrieved any \"%s\" articles at the moment.\n\nRetry or
+        try again later
     </string>
     <string name="retry_button_title">Retry</string>
     <string name="More">More</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
 </resources>

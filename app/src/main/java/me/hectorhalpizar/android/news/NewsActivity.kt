@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -14,10 +16,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.nav_header_news.*
 import me.hectorhalpizar.android.news.databinding.ActivityNewsBinding
+import me.hectorhalpizar.android.news.framework.versionCode
+import me.hectorhalpizar.android.news.framework.versionName
 import me.hectorhalpizar.core.news.domain.Section
+
 
 class NewsActivity : AppCompatActivity() {
 
@@ -71,15 +75,13 @@ class NewsActivity : AppCompatActivity() {
     private fun setHeaderVersion() {
         val appPackageInfo = packageManager.getPackageInfo(packageName, 0)
 
-        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            appPackageInfo.longVersionCode.toInt()
-        } else {
-            appPackageInfo.versionCode
-        }
+        val versionCode = versionCode(appPackageInfo)
+        val versionName = versionName(appPackageInfo)
 
-        val versionName = appPackageInfo.versionName
-
-        version_header.text = String.format(getString(R.string.version), versionName, versionCode)
+        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        val headerView: View = navigationView.getHeaderView(0)
+        val version : TextView = headerView.findViewById(R.id.version_header)
+        version.text = String.format(getString(R.string.version), versionName, versionCode)
     }
 
     private val navigationSection: HashMap<Int, Section> = hashMapOf(

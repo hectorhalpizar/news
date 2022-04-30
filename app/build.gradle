@@ -28,6 +28,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "NY_TIMES_REST_API_KEY", "\"${app_properties["ny_times.api_key"]}\"")
+        buildConfigField("int", "APP_VERSION_CODE", "$versionCode")
+        buildConfigField("String", "APP_VERSION_NAME", "\"$versionName\"")
     }
 
     buildTypes {

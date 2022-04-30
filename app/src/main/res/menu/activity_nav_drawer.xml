@@ -122,6 +122,9 @@
 
     <group
             android:id="@+id/nav_footer">
+        <item android:id="@+id/nav_about"
+              android:title="@string/menu_about" />
+
         <item
                 android:id="@+id/nav_provided_by"
                 app:actionLayout="@layout/data_provided_by"
