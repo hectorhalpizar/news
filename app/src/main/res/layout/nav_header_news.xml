@@ -22,23 +22,27 @@
             android:id="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-    />
+            app:layout_constraintEnd_toStartOf="@+id/title_header"/>
 
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:text="@string/nav_header_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/app_name"
+            android:textAppearance="@style/Theme.Header.Title"
             app:layout_constraintTop_toTopOf="@+id/imageView" app:layout_constraintStart_toEndOf="@+id/imageView"
-            android:id="@+id/textView" android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/title_header" android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/version_header"/>
 
 
-    <!--    <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/nav_header_subtitle"-->
-<!--            android:id="@+id/textView"/>-->
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Theme.Header.Subtitle"
+            android:id="@+id/version_header"
+            app:layout_constraintTop_toBottomOf="@+id/title_header" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/title_header" tools:text="@string/nav_header_subtitle"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
