@@ -54,8 +54,8 @@ class RoomTopStoryDataSourceTest {
         val reasonFailArticles = "Articles: Feed = ${articlesFeedSize}, Database = $articlesDbSize}"
         assertThat(reasonFailArticles, articlesFeedSize == articlesDbSize)
 
-        val articleFromFirstMultimediaFeedSize = feed.results.first().multimedia.size
-        val articleFromFirstMultimediaDbSize = resultDb.first().multimedia.size
+        val articleFromFirstMultimediaFeedSize = feed.results.first().multimedia?.size
+        val articleFromFirstMultimediaDbSize = resultDb.first().multimedia?.size
         val reasonFailMultimedia = "Multimedia in first article: Feed = ${articleFromFirstMultimediaFeedSize}, Database = $articleFromFirstMultimediaDbSize}"
         assertThat(reasonFailMultimedia, articleFromFirstMultimediaFeedSize == articleFromFirstMultimediaDbSize)
     }
@@ -121,7 +121,7 @@ class RoomTopStoryDataSourceTest {
 
     private fun getTotalMultimedia(articles: List<Article>) : Int {
         var total = 0
-        articles.forEach { total += it.multimedia.size }
+        articles.forEach { total += it.multimedia!!.size }
         return total
     }
 }

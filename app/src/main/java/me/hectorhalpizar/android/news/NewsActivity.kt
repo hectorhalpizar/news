@@ -2,6 +2,7 @@ package me.hectorhalpizar.android.news
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.nav_header_news.*
 import me.hectorhalpizar.android.news.databinding.ActivityNewsBinding
 import me.hectorhalpizar.core.news.domain.Section
 
@@ -57,12 +59,27 @@ class NewsActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.news, menu)
+        setHeaderVersion()
         return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_news)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun setHeaderVersion() {
+        val appPackageInfo = packageManager.getPackageInfo(packageName, 0)
+
+        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            appPackageInfo.longVersionCode.toInt()
+        } else {
+            appPackageInfo.versionCode
+        }
+
+        val versionName = appPackageInfo.versionName
+
+        version_header.text = String.format(getString(R.string.version), versionName, versionCode)
     }
 
     private val navigationSection: HashMap<Int, Section> = hashMapOf(

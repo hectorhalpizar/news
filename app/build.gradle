@@ -8,6 +8,14 @@ plugins {
 def app_properties = new Properties()
 app_properties.load(new FileInputStream(rootProject.file("app.properties")))
 
+def gitCommitNumber = {
+    try {
+        return 'git rev-list --count --first-parent HEAD'.execute().text.trim().toInteger().intValue()
+    } catch (Exception ignored) {
+        return 0
+    }
+}
+
 android {
     compileSdkVersion 31
 
@@ -15,8 +23,8 @@ android {
         applicationId "me.hectorhalpizar.android.nytimes"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode gitCommitNumber()
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "NY_TIMES_REST_API_KEY", "\"${app_properties["ny_times.api_key"]}\"")
