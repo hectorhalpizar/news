@@ -25,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:textAlignment="center"
                 android:textAppearance="@style/Theme.Header.Title"
                 app:layout_constraintTop_toBottomOf="@+id/app_icon" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" android:id="@+id/app_title"
@@ -33,6 +34,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:textAppearance="@style/Theme.Header.Subtitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" android:id="@+id/app_version"
