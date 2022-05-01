@@ -5,7 +5,6 @@
         <h1>News</h1>
         <h4>Version %s (%s)</h4>
         <p>News is simple app in which you will able to list the top stories provided by the New York Times.</p>
-        <h1>Disclaimer</h1>
 
         <p>This is app was created with the purpose to improve my skills and experience as Android Developer.
             No profits are being made from this application.</p>
