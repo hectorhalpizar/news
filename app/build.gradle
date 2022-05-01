@@ -32,12 +32,23 @@ android {
         buildConfigField("String", "APP_VERSION_NAME", "\"$versionName\"")
     }
 
+    signingConfigs {
+        release {
+            keyAlias = app_properties["keyAlias"]
+            keyPassword = app_properties["keyPassword"]
+            storeFile = file(app_properties["storeFile"])
+            storePassword = app_properties["storePassword"]
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
