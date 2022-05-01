@@ -53,4 +53,7 @@
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="refresh">Refresh</string>
     <string name="fetching_top_story">Fetching %s Top Stories…</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur purus turpis, posuere sed mauris ut, semper faucibus nisi. Nam in.</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
 </resources>

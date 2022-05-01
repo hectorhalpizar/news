@@ -13,21 +13,24 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.NewsApp">
         <activity
-                android:name=".NewsActivity"
-                android:label="@string/title_activity_news"
+                android:name=".TutorialActivity"
+                android:label="Tutorial"
                 android:theme="@style/Theme.App.Starting">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <activity
+                android:name=".NewsActivity"
+                android:label="@string/title_activity_news"
+                android:theme="@style/Theme.App.Starting" />
         <activity
                 android:name=".AboutActivity"
-                android:label="About"
                 android:exported="false"
-                android:theme="@style/Theme.NewsApp.NoActionBar" />
+                android:label="About"
+                android:theme="@style/Theme.NewsApp.NoActionBar"/>
     </application>
 
 </manifest>
