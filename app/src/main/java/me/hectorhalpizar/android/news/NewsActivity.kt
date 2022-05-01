@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import me.hectorhalpizar.android.news.databinding.ActivityNewsBinding
 import me.hectorhalpizar.android.news.framework.versionCode
 import me.hectorhalpizar.android.news.framework.versionName
+import me.hectorhalpizar.android.news.presentation.AboutFragment
 import me.hectorhalpizar.core.news.domain.Section
 
 
@@ -44,6 +45,11 @@ class NewsActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.setNavigationItemSelectedListener {
             when(it.itemId) {
+                R.id.nav_about -> {
+                    Intent(this, AboutActivity::class.java).also { intent ->
+                        startActivity(intent)
+                    }
+                }
                 R.id.nav_provided_by -> {
                     Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.nytimes.com/")).also { intent ->
                         startActivity(intent)

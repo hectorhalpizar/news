@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_top_stories.*
@@ -17,7 +18,7 @@ import me.hectorhalpizar.core.news.domain.Section
 
 private const val TAG = "TopStoriesFragment"
 
-class TopStoriesFragment : BaseFragment() {
+class TopStoriesFragment : Fragment() {
     private var section: String? = null
     private lateinit var viewModel: TopStoriesViewModel
 

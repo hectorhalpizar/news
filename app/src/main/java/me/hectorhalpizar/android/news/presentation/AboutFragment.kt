@@ -9,12 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_about.view.*
 import me.hectorhalpizar.android.news.R
 import me.hectorhalpizar.android.news.framework.versionCode
 import me.hectorhalpizar.android.news.framework.versionName
 
-class AboutFragment : BaseFragment() {
+class AboutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,15 +45,12 @@ class AboutFragment : BaseFragment() {
     }
 
     private inner class ImageGetter : Html.ImageGetter {
-        @RequiresApi(Build.VERSION_CODES.Q)
         override fun getDrawable(source: String?): Drawable? {
             return if (source?.equals("icon.jpg") == true) {
                 activity?.let {
                     val drawable = it.resources?.getDrawable(R.drawable.ic_html, it.theme)
                     drawable?.setBounds(0, 0, 300, 300)
-                    return drawable
-                } ?: run {
-                    null
+                    drawable
                 }
             } else {
                 null
