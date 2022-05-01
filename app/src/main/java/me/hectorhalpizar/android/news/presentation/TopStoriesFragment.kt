@@ -26,6 +26,7 @@ class TopStoriesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             section = it.getString(SECTION_EXTRA)
+            setHasOptionsMenu(true)
         } ?: throw IllegalArgumentException("A valid section must be provided")
     }
 
@@ -47,11 +48,18 @@ class TopStoriesFragment : Fragment() {
                             adapter.update(state.topStories)
                             top_stories_recycler_view.visibility = View.VISIBLE
                             failed_fetch_top_story.visibility = View.GONE
+                            fetching_top_story.visibility = View.GONE
                         }
                         is TopStoriesViewModel.RequestState.Failed -> {
                             Log.e(TAG, "Error: ${state.cause}")
                             top_stories_recycler_view.visibility = View.GONE
                             failed_fetch_top_story.visibility = View.VISIBLE
+                            fetching_top_story.visibility = View.GONE
+                        }
+                        is TopStoriesViewModel.RequestState.Fetching -> {
+                            top_stories_recycler_view.visibility = View.GONE
+                            failed_fetch_top_story.visibility = View.GONE
+                            fetching_top_story.visibility = View.VISIBLE
                         }
                         else -> {
                             Log.v(TAG, "Unsupervised state: $state")
@@ -79,6 +87,10 @@ class TopStoriesFragment : Fragment() {
                     getText(R.string.failed_fetch_top_story_message).toString(),
                     (activity as AppCompatActivity?)?.supportActionBar?.title ?: section
                 )
+            v.fetching_text_view.text = String.format(
+                getText(R.string.fetching_top_story).toString(),
+                (activity as AppCompatActivity?)?.supportActionBar?.title ?: section
+            )
             v.retry_fetch_top_stories.setOnClickListener { fetch() }
         }
     }

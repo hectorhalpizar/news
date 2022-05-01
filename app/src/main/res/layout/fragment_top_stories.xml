@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/failed_fetch_top_story"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" android:visibility="gone">
 
         <TextView
                 android:id="@+id/failed_fetch_top_story_textview"
@@ -45,4 +45,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/failed_fetch_top_story_textview"
                 android:layout_marginBottom="256dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center" android:id="@+id/fetching_top_story">
+
+        <ProgressBar
+                android:id="@+id/fetching_progress_bar"
+                android:text="@string/fetching_top_story"
+                android:layout_width="217dp"
+                android:layout_height="191dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/fetching_text_view" app:layout_constraintVertical_bias="0.51"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@string/fetching_top_story"
+                  android:id="@+id/fetching_text_view"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                  android:textAlignment="center"
+                  app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/fetching_progress_bar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </FrameLayout>
