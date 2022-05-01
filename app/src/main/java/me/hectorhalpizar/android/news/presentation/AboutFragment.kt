@@ -1,6 +1,9 @@
 package me.hectorhalpizar.android.news.presentation
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +24,19 @@ class AboutFragment : BaseFragment() {
 
                 val versionCode = versionCode(appPackageInfo)
                 val versionName = versionName(appPackageInfo)
+                val aboutContent = String.format(
+                    fragmentActivity.getString(R.string.news_about),
+                    versionName,
+                    versionCode
+                )
 
-                view.app_version.text = String.format(fragmentActivity.getString(R.string.version), versionName, versionCode)
+                view.about_content.movementMethod = LinkMovementMethod.getInstance()
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    view.about_content.text = Html.fromHtml(aboutContent, Html.FROM_HTML_MODE_LEGACY)
+                } else {
+                    view.about_content.text = Html.fromHtml(aboutContent)
+                }
             }
         }
     }
