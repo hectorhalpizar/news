@@ -80,6 +80,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlin_coroutines"
     implementation "com.github.bumptech.glide:glide:$versions.glide"
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
 
     implementation(project(":core"))
 

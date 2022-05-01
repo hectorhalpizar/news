@@ -18,7 +18,6 @@ import com.google.android.material.navigation.NavigationView
 import me.hectorhalpizar.android.news.databinding.ActivityNewsBinding
 import me.hectorhalpizar.android.news.framework.versionCode
 import me.hectorhalpizar.android.news.framework.versionName
-import me.hectorhalpizar.android.news.presentation.AboutFragment
 import me.hectorhalpizar.core.news.domain.Section
 
 
