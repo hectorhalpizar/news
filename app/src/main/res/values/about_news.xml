@@ -4,6 +4,7 @@
         <![CDATA[<html>
         <h1>News</h1>
         <h4>Version %s (%s)</h4>
+        <img src="icon.jpg" />
         <p>News is simple app in which you will able to list the top stories provided by the New York Times.</p>
 
         <p>This is app was created with the purpose to improve my skills and experience as Android Developer.
@@ -13,7 +14,7 @@
 
         <a href="https://developer.nytimes.com">Data provided by The New York Times</a>
 
-        <h4>Open Source</h4>
+        <h4>Apache License Version 2.0</h4>
         <p>This application is build using the below libraries. These libraries are distributed under the associated licenses and required copyright also listed below.</p>
 
         <h4>Retrofit</h4>
