@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tutorial_info_main_menu"><![CDATA[You will find the News Top Stories Categories by pressing the <b>Menu Button</b> (<img src="menu.jpg" />) on the corner.</html>]]></string>
+    <string name="tutorial_info_sections"><![CDATA[Selecting any <b>Section</b> you will get you the list articles available with a picture or brief description.</html>]]></string>
+    <string name="tutorial_info_more"><![CDATA[Press the <b>More button</b> to access to read more about the selected article in NY Times web page.</html>]]></string>
+    <string name="tutorial_info_refresh"><![CDATA[Press the <b>Refresh Button</b> (<img src="refresh.jpg" />) to reload articles from the selected section.</html>]]></string>
+</resources>
