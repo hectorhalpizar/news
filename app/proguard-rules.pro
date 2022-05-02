@@ -1,1 +1,4 @@
 -keep public class * extends androidx.lifecycle.ViewModel {*;}
+-keepnames class me.hectorhalpizar.core.news.domain.Article { *; }
+-keepnames class me.hectorhalpizar.core.news.domain.Multimedia { *; }
+-keepnames class me.hectorhalpizar.android.news.framework.network.** { *; }
