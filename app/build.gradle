@@ -20,7 +20,7 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "me.hectorhalpizar.android.nytimes"
+        applicationId "me.hectorhalpizar.android.news"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode gitCommitNumber()
