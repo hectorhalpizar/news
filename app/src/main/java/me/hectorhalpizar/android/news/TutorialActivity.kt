@@ -1,9 +1,16 @@
 package me.hectorhalpizar.android.news
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -53,7 +60,9 @@ class TutorialActivity :  AppCompatActivity(), TutorialPageFragment.TutorialPage
     }
 
     override fun onLeftButtonPress() {
-        finishTutorial()
+        showDialog {
+            finishTutorial()
+        }
     }
 
     override fun onRightButtonPress() {
@@ -84,6 +93,31 @@ class TutorialActivity :  AppCompatActivity(), TutorialPageFragment.TutorialPage
     private fun setTutorialAsFinish() {
         val sharedPreferences = this.getSharedPreferences(TUTORIAL_PREFERENCE, Context.MODE_PRIVATE)
         sharedPreferences.edit().putBoolean(TUTORIAL_IS_FINISH, true).apply()
+    }
+
+    private fun showDialog(positiveCallback: () -> Unit) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.dialog_fragment)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val text = dialog.findViewById(R.id.dialog_title) as TextView
+        text.setText(R.string.skip_tutorial_dialog_title)
+
+        val desc = dialog.findViewById(R.id.dialog_description) as TextView
+        desc.setText(R.string.skip_tutorial_dialog_desc)
+
+        val btnPositive: Button = dialog.findViewById(R.id.positive_button) as Button
+        btnPositive.setOnClickListener {
+            positiveCallback.invoke()
+        }
+
+        val btnNegative: Button = dialog.findViewById(R.id.negative_button) as Button
+        btnNegative.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.window?.setLayout(800, 800)
+        dialog.show()
     }
 
     private inner class TutorialSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
