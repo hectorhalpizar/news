@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -33,7 +32,7 @@ class TutorialActivity :  AppCompatActivity(), TutorialPageFragment.TutorialPage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (isTutorialFinish()) {
+        if (isTutorialFinish() && ACTION_MAIN == intent.action) {
             goToTheApp()
             return
         }
@@ -60,7 +59,9 @@ class TutorialActivity :  AppCompatActivity(), TutorialPageFragment.TutorialPage
     }
 
     override fun onLeftButtonPress() {
-        showDialog {
+        if (ACTION_MAIN == intent.action) {
+            showDialog { finishTutorial() }
+        } else {
             finishTutorial()
         }
     }
@@ -109,6 +110,7 @@ class TutorialActivity :  AppCompatActivity(), TutorialPageFragment.TutorialPage
 
         val btnPositive: Button = dialog.findViewById(R.id.positive_button) as Button
         btnPositive.setOnClickListener {
+            dialog.dismiss()
             positiveCallback.invoke()
         }
 
@@ -128,5 +130,6 @@ class TutorialActivity :  AppCompatActivity(), TutorialPageFragment.TutorialPage
     companion object {
         private const val TUTORIAL_PREFERENCE = "tutorial_reference"
         private const val TUTORIAL_IS_FINISH = "tutorial_is_finish"
+        const val ACTION_MAIN = "android.intent.action.MAIN"
     }
 }

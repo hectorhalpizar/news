@@ -61,4 +61,6 @@
     <string name="yes">Yes</string>
     <string name="skip_tutorial_dialog_title">Want to skip the tutorial?</string>
     <string name="skip_tutorial_dialog_desc">You can review the tutorial later by going to the option on the bottom of the <b>Main Menu</b>.</string>
+    <string name="review_tutorial">REVIEW TUTORIAL</string>
+    <string name="exit">Exit</string>
 </resources>

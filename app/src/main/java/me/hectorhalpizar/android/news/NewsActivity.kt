@@ -44,6 +44,11 @@ class NewsActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.setNavigationItemSelectedListener {
             when(it.itemId) {
+                R.id.nav_tutorial -> {
+                    Intent(this, TutorialActivity::class.java).also { intent ->
+                        startActivity(intent)
+                    }
+                }
                 R.id.nav_about -> {
                     Intent(this, AboutActivity::class.java).also { intent ->
                         startActivity(intent)

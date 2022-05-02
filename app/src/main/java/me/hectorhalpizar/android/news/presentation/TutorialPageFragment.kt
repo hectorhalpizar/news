@@ -13,7 +13,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_about.view.*
 import kotlinx.android.synthetic.main.page_tutorial.view.*
 import me.hectorhalpizar.android.news.R
 import me.hectorhalpizar.android.news.TutorialActivity
@@ -47,9 +46,14 @@ class TutorialPageFragment : Fragment() {
                 if (isLastPage) {
                     view.left_button.visibility = View.GONE
                     view.right_button.setText(R.string.go_to_app)
-
                 } else {
+
+                    if (TutorialActivity.ACTION_MAIN != activity?.intent?.action) {
+                        view.left_button.setText(R.string.exit)
+                    }
+
                     view.left_button.visibility = View.VISIBLE
+
                     view.right_button.setText(R.string.next)
                     view.left_button.setOnClickListener {
                         (fragmentActivity as TutorialActivity).onLeftButtonPress()
